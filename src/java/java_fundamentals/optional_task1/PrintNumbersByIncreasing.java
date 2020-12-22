@@ -11,24 +11,23 @@ public class PrintNumbersByIncreasing {
         System.out.println("Enter the number of values: ");
         Scanner scanner = new Scanner(System.in);
         int numberOfValues = scanner.nextInt();
-        int[] numbers = new int[numberOfValues];
+        int[] inputtedNumbers = new int[numberOfValues];
 
         System.out.println("Enter numbers: ");
         for (int i = 0; i < numberOfValues; i++) {
-            numbers[i] = scanner.nextInt();
+            inputtedNumbers[i] = scanner.nextInt();
         }
 
-        for (int i = numbers.length - 1; i > 0; i--) {
+        for (int i = inputtedNumbers.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
-                if (numbers[j] > numbers[j + 1]) {
-                    int tmp = numbers[j];
-                    numbers[j] = numbers[j + 1];
-                    numbers[j + 1] = tmp;
+                if (inputtedNumbers[j] > inputtedNumbers[j + 1]) {
+                    int tmp = inputtedNumbers[j];
+                    inputtedNumbers[j] = inputtedNumbers[j + 1];
+                    inputtedNumbers[j + 1] = tmp;
                 }
             }
-
         }
-        for (int number : numbers) {
+        for (int number : inputtedNumbers) {
             System.out.println(number);
         }
     }

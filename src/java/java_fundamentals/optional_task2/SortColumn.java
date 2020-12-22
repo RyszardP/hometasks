@@ -12,9 +12,9 @@ public class SortColumn {
         System.out.println("Sort the rows (columns) of the matrix in ascending order of the values of the elements" +
                 " of the k-th column (row).");
         System.out.println("Enter the value of the matrix size: ");
-        int m = 20;
-        int mMax = m;
-        int mMin = m * -1;
+        int matrixValue = 20;
+        int matrixValueMax = matrixValue;
+        int matrixValueMin = matrixValue * -1;
 
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
@@ -23,7 +23,7 @@ public class SortColumn {
         // Fill the matrix
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                int randomM = (int) (Math.random() * (mMax - mMin + 1) + mMin);
+                int randomM = (int) (Math.random() * (matrixValueMax - matrixValueMin + 1) + matrixValueMin);
                 //  System.out.println(randomM);
                 matrix[i][j] = randomM;
             }

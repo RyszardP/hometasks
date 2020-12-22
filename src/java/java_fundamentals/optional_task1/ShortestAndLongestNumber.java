@@ -11,21 +11,21 @@ public class ShortestAndLongestNumber {
         Scanner scanner = new Scanner(System.in);
 
         int numberOfValues = scanner.nextInt();
-        int[] numbers = new int[numberOfValues];
+        int[] inputtedNumbers = new int[numberOfValues];
         System.out.println("Enter numbers: ");
 
         for (int i = 0; i < numberOfValues; i++) {
-            numbers[i] = scanner.nextInt();
+            inputtedNumbers[i] = scanner.nextInt();
         }
 
-        int smallestNumber = numbers[0];
-        int largestNumber = numbers[0];
+        int smallestNumber = inputtedNumbers[0];
+        int largestNumber = inputtedNumbers[0];
 
         for (int i = 0; i < numberOfValues; i++) {
-            if (numbers[i] > largestNumber)
-                largestNumber = numbers[i];
-            else if (numbers[i] < smallestNumber)
-                smallestNumber = numbers[i];
+            if (inputtedNumbers[i] > largestNumber)
+                largestNumber = inputtedNumbers[i];
+            else if (inputtedNumbers[i] < smallestNumber)
+                smallestNumber = inputtedNumbers[i];
         }
         System.out.println("Largest Number : " + largestNumber);
         System.out.println("Smallest Number : " + smallestNumber);

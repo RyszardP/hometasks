@@ -6,9 +6,9 @@ public class MainTask4 {
     public static void main(String[] args) {
      /*   4.     Ввести целые числа как аргументы командной строки, подсчитать их сумму (произведение) и
         вывести результат на консоль.*/
-        int[] array = new int[args.length];
-        for (int i = 0; i < array.length; ++i) {
-            array[i] = Integer.parseInt(args[i]);
+        int[] arrayOfNumbers = new int[args.length];
+        for (int i = 0; i < arrayOfNumbers.length; ++i) {
+            arrayOfNumbers[i] = Integer.parseInt(args[i]);
         }
     }
 }

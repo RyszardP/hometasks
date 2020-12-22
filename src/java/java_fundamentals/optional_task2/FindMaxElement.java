@@ -14,9 +14,9 @@ public class FindMaxElement {
         System.out.println("Enter n from the console - the dimension of the matrix a [n] [n]. Set the values of matrix" +
                 " elements in the range of values from -M to M using a random number generator (Random class).");
         System.out.println("Enter the value of the matrix size: ");
-        int m = 20;
-        int mMax = m;
-        int mMin = m * -1;
+        int matrixValue = 20;
+        int matrixValueMax = matrixValue;
+        int matrixValueMin = matrixValue * -1;
 
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
@@ -25,7 +25,7 @@ public class FindMaxElement {
         // Fill the matrix
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                int randomM = (int) (Math.random() * (mMax - mMin + 1) + mMin);
+                int randomM = (int) (Math.random() * (matrixValueMax - matrixValueMin + 1) + matrixValueMin);
                 //  System.out.println(randomM);
                 matrix[i][j] = randomM;
             }
@@ -40,8 +40,7 @@ public class FindMaxElement {
         }
 
         // Find the maximum element of the matrix and row with column
-
-        int maxElement = mMin;
+        int maxElement = matrixValueMin;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (matrix[i][j] > maxElement)
