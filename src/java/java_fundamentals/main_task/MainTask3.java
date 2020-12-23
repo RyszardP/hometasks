@@ -1,12 +1,16 @@
 package java_fundamentals.main_task;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class MainTask3 {
     public static void main(String[] args) {
-        // 3.  Вывести заданное количество случайных чисел с переходом и без перехода на новую строку
+
+
+        /**
+         * Task 3 Print a given number of random numbers with and without a jump to a new line
+         * @param arrayWithNumbers - numbers entered by the user amount of numbers
+         */
         System.out.println("Please enter ");
         Scanner scanner = new Scanner(System.in);
         int numbers = scanner.nextInt();
@@ -24,5 +28,6 @@ public class MainTask3 {
         for (int i = 0; i < arrayWithNumbers.length; i++) {
             System.out.print(arrayWithNumbers[i] + " ");
         }
+
     }
 }

@@ -1,8 +1,11 @@
-package collections.main_task.candy;
+package collections.candy;
 
-import collections.main_task.enums.Flavor;
-import collections.main_task.enums.Producer;
-
+import collections.enums.Flavor;
+import collections.enums.Producer;
+/**
+ * Class  Marmalade parameters <b>marmaladeFlavor</b>
+ * @author Rysard Poplavskij
+ */
 public class Marmalade  extends Candy{
     private Flavor marmaladeFlavor;
 

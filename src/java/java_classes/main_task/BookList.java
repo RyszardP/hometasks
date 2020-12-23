@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookList {
-
+    /**
+     *
+     * @param author - given author
+     * @param books  - list of books
+     * @return result
+     */
     public static List<Book> booksByAuthor(String author, Book[] books) {
         List<Book> result = new ArrayList<>();
         for (Book book : books) {
@@ -17,6 +22,12 @@ public class BookList {
         return result;
     }
 
+    /**
+     *
+     * @param publisher - given publisher
+     * @param books - list of books
+     * @return bookList
+     */
     public static List<Book> booksByPublisher(String publisher, Book[] books) {
         List<Book> bookList = new ArrayList<>();
 
@@ -28,6 +39,12 @@ public class BookList {
         return bookList;
     }
 
+    /**
+     *
+     * @param year - year of search
+     * @param books - list of books
+     * @return bookList
+     */
     public static List<Book> booksAfterYear(int year, Book[] books) {
         List<Book> bookList = new ArrayList<>();
 

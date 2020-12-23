@@ -5,7 +5,13 @@ import java.util.Scanner;
 public class ShortestAndLongestNumber {
     public static void main(String[] args) {
 
-        //Найти самое короткое и самое длинное число. Вывести найденные числа и их длину.
+        /**
+         * Find the shortest and longest number. Print the found numbers and their length.
+         * @param numberOfValues - the number of values entered by the user
+         * @param inputtedNumbers - array with input numbers
+         * @param smallestNumber - smallest number in array
+         * @param largestNumber - largest number in array
+         */
 
         System.out.println("Enter the number of values: ");
         Scanner scanner = new Scanner(System.in);

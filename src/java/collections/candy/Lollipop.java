@@ -1,8 +1,12 @@
-package collections.main_task.candy;
+package collections.candy;
 
-import collections.main_task.enums.Flavor;
-import collections.main_task.enums.Producer;
+import collections.enums.Flavor;
+import collections.enums.Producer;
 
+/**
+ * Class Lollipop parameters <b>lollipopFlavor</b>
+ * @author Rysard Poplavskij
+ */
 public class Lollipop extends Candy {
     private Flavor lollipopFlavor;
 

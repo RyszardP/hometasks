@@ -1,5 +1,5 @@
-package collections.main_task.enums;
+package collections.enums;
 
 public enum Producer {
-    KOMMUNARKA, ROSHEN, ROTFRONT, SPARTAK, MAMBA, MOSKVICHKA,HARIBO, MELLER
+    KOMMUNARKA, ROSHEN, SPARTAK, MAMBA, MOSKVICHKA,HARIBO, MELLER
 }

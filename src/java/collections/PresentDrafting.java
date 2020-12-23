@@ -1,9 +1,12 @@
-package collections.main_task;
+package collections;
 
-import collections.main_task.candy.*;
-import collections.main_task.enums.Flavor;
-import collections.main_task.enums.Ingredients;
-import collections.main_task.enums.Producer;
+import collections.candy.Chewing;
+import collections.candy.Glazed;
+import collections.candy.Lollipop;
+import collections.candy.Marmalade;
+import collections.enums.Flavor;
+import collections.enums.Ingredients;
+import collections.enums.Producer;
 
 import java.util.EnumSet;
 
@@ -19,12 +22,12 @@ public class PresentDrafting {
         present.addCandy(new Lollipop("Bim-Bom",0.8,21.4,Producer.ROSHEN,Flavor.APPLE));
         present.addCandy(new Lollipop("Bim-Bom",0.8,21.4,Producer.ROSHEN,Flavor.RASPBERRY));
         present.addCandy(new Marmalade("Haribo",1.2,155,Producer.HARIBO,Flavor.APPLE));
-        present.addCandy(new Cheving("Mamba",3,7,Producer.MAMBA,Flavor.CHERRY));
-        present.addCandy(new Cheving("Meller",0.5,38,Producer.MELLER,Flavor.CHOCOLATE));
-        present.addCandy(new Cheving("Jelli",2.7,65,Producer.ROSHEN,Flavor.LEMON));
-        present.addCandy(new Cheving("Jelli",2.7,65,Producer.ROSHEN,Flavor.APPLE));
-        present.addCandy(new Cheving("Jelli",2.7,65,Producer.ROSHEN,Flavor.ORANGE));
-        present.addCandy(new Cheving("Jelli",2.7,65,Producer.ROSHEN,Flavor.STRAWBERRY));
+        present.addCandy(new Chewing("Mamba",3,7,Producer.MAMBA,Flavor.CHERRY));
+        present.addCandy(new Chewing("Meller",0.5,38,Producer.MELLER,Flavor.CHOCOLATE));
+        present.addCandy(new Chewing("Jelli",2.7,65,Producer.ROSHEN,Flavor.LEMON));
+        present.addCandy(new Chewing("Jelli",2.7,65,Producer.ROSHEN,Flavor.APPLE));
+        present.addCandy(new Chewing("Jelli",2.7,65,Producer.ROSHEN,Flavor.ORANGE));
+        present.addCandy(new Chewing("Jelli",2.7,65,Producer.ROSHEN,Flavor.STRAWBERRY));
         present.addCandy(new Glazed("Алёнка",1.1,20,Producer.KOMMUNARKA, EnumSet.of(Ingredients.COCOA,Ingredients.HAZELNUT)));
         present.addCandy(new Glazed("Spartak",1.2,48,Producer.SPARTAK,EnumSet.of(Ingredients.CARAMEL,Ingredients.NOUGAT,Ingredients.PEANUT)));
         present.addCandy(new Glazed("Аэрофлотские",0.4,12,Producer.SPARTAK,EnumSet.of(Ingredients.COCOA,Ingredients.NOUGAT,Ingredients.PEANUT,Ingredients.CARAMEL)));

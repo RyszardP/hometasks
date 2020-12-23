@@ -1,12 +1,16 @@
-package collections.main_task;
+package collections;
 
-import collections.main_task.candy.Candy;
+import collections.candy.Candy;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class Present with parameters <b>totalWeight</b> and list <b>candies</b>
+ * @author Rysard Poplavskij
+ */
 public class Present {
     private final ArrayList<Candy> candies;
     private double totalWeight;

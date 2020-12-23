@@ -5,7 +5,11 @@ import java.util.Scanner;
 public class PrintNumbersByIncreasing {
     public static void main(String[] args) {
 
-        // Вывести числа в порядке возрастания (убывания) значений их длины.
+        /**
+         * Print numbers in ascending (descending) order of their lengths.
+         * @param numberOfValues - the number of values entered by the user
+         * @param inputtedNumbers - array with input numbers
+         */
 
         System.out.println("Print the numbers in increasing order of their lengths.");
         System.out.println("Enter the number of values: ");

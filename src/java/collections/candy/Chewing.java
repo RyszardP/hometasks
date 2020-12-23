@@ -1,12 +1,16 @@
-package collections.main_task.candy;
+package collections.candy;
 
-import collections.main_task.enums.Flavor;
-import collections.main_task.enums.Producer;
+import collections.enums.Flavor;
+import collections.enums.Producer;
 
-public class Cheving extends Candy {
+/**
+ * Class Chewing with parameters <b>ChewingFlavor</b>
+ * @author Rysard Poplavskij
+ */
+public class Chewing extends Candy {
     private Flavor ChewingFlavor;
 
-    public Cheving(String name, double sugarContent, double weight, Producer producer, Flavor chewingFlavor) {
+    public Chewing(String name, double sugarContent, double weight, Producer producer, Flavor chewingFlavor) {
         super(name, sugarContent, weight, producer);
         ChewingFlavor = chewingFlavor;
     }
@@ -25,9 +29,9 @@ public class Cheving extends Candy {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        Cheving cheving = (Cheving) o;
+        Chewing chewing = (Chewing) o;
 
-        return ChewingFlavor == cheving.ChewingFlavor;
+        return ChewingFlavor == chewing.ChewingFlavor;
     }
 
     @Override

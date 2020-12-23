@@ -11,8 +11,16 @@ public class FindMaxElement {
 
         //Найти максимальный элемент в матрице и удалить из матрицы все строки и столбцы, его содержащие
 
-        System.out.println("Enter n from the console - the dimension of the matrix a [n] [n]. Set the values of matrix" +
-                " elements in the range of values from -M to M using a random number generator (Random class).");
+        /**
+         * Enter n from the console - the dimension of the matrix a [n] [n]. Set the values of matrix
+         * elements in the range of values from -M to M using a random number generator (Random class).
+         * @param matrixValue - maximum value in matrix (range)
+         * @param n - matrix dimension
+         * @param matrix - the initial matrix
+         * @param randomM - random number
+         * @param maxElement - max element in the matrix
+         */
+
         System.out.println("Enter the value of the matrix size: ");
         int matrixValue = 20;
         int matrixValueMax = matrixValue;
@@ -22,15 +30,13 @@ public class FindMaxElement {
         int n = scanner.nextInt();
 
         int[][] matrix = new int[n][n];
-        // Fill the matrix
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 int randomM = (int) (Math.random() * (matrixValueMax - matrixValueMin + 1) + matrixValueMin);
-                //  System.out.println(randomM);
                 matrix[i][j] = randomM;
             }
         }
-        //Print the matrix
+
         System.out.println("The matrix with random elements: ");
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -39,7 +45,7 @@ public class FindMaxElement {
             System.out.println(" ");
         }
 
-        // Find the maximum element of the matrix and row with column
+
         int maxElement = matrixValueMin;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {

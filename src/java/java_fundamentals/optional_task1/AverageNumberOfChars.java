@@ -5,10 +5,16 @@ import java.util.Scanner;
 public class AverageNumberOfChars {
     public static void main(String[] args) {
 
-        //Вывести на консоль те числа, длина которых (больше) средней длины по всем числам, а также длину.
+        /**
+         * Print to the console those numbers whose length is greater than the average length for all numbers,
+         * as well as the length.
+         * @param numberOfValues - the number of values entered by the user
+         * @param inputtedNumbers - array with input numbers
+         * @param numOfChars - quantity of characters in a number
+         * @param sumOFNumChars - the sum of characters
+         * @param averageLength - average length of numbers
+         */
 
-        System.out.println("Print to the console those numbers whose length is less (more) than the average length" +
-                ". for all numbers, as well as the length.");
         System.out.println("Enter the number of values: ");
         Scanner scanner = new Scanner(System.in);
 
@@ -23,7 +29,6 @@ public class AverageNumberOfChars {
             inputtedNumbers[i] = scanner.nextInt();
         }
         System.out.println();
-        // array with number of chars in every number
         for (int i = 0; i < numberOfValues; i++) {
             numOfChars[i] = String.valueOf(inputtedNumbers[i]).length();
             sumOFNumChars += numOfChars[i];

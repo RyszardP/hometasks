@@ -1,5 +1,5 @@
-package collections.main_task.enums;
+package collections.enums;
 
 public enum Flavor {
-    MINT, PEAR, APPLE, ORANGE, RASPBERRY, STRAWBERRY, CHERRY, LEMON, CHOCOLATE
+    MINT, APPLE, ORANGE, RASPBERRY, STRAWBERRY, CHERRY, LEMON, CHOCOLATE
 }

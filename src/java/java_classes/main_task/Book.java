@@ -1,18 +1,23 @@
 package java_classes.main_task;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+
 
 public class Book {
 
-    /*5. Book: id, Название, Автор (ы), Издательство, Год издания, Количество страниц, Цена, Тип переплета.
-    Создать массив объектов. Вывести:
-    a) список книг заданного автора;
-    b)   список книг, выпущенных заданным издательством;
-    c)   список книг, выпущенных после заданного года.*/
 
+    /**
+     * Create classes, the specifications of which are given below. Define constructors and methods setType (),
+     * getType (), toString (). Define additional methods in the class that creates an array of objects.
+     * Set the criteria for selecting data and display this data on the console. Each class with information
+     * must declare several constructors.
+     * Book: id, Title, Author (s), Publisher, Year of publication, Number of pages, Price, Binding type.
+     Create an array of objects. Output:
+     a) a list of books by a given author;
+     b) a list of books published by a given publisher;
+     c) a list of books released after a given year.
+     *
+     */
 
     private long id;
     private String name;

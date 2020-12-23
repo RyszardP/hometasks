@@ -1,10 +1,14 @@
-package collections.main_task.candy;
+package collections.candy;
 
-import collections.main_task.enums.Ingredients;
-import collections.main_task.enums.Producer;
+import collections.enums.Ingredients;
+import collections.enums.Producer;
 
 import java.util.EnumSet;
 
+/**
+ * Class Glazed with parameters <b>Filling</b>
+ * @author Rysard Poplavskij
+ */
 public class Glazed extends Candy {
     private EnumSet<Ingredients> Filling;
 

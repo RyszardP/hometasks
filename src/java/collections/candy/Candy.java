@@ -1,8 +1,12 @@
-package collections.main_task.candy;
+package collections.candy;
 
-import collections.main_task.enums.Producer;
+import collections.enums.Producer;
 
 public abstract class Candy {
+    /**
+     * Class Candy with parameters <b>name</b>, <b>sugarContent</b>, <b>weight</b>, <b>producer</b>
+     * @author Rysard Poplavskij
+     */
     String name;
     double sugarContent;
     double weight;
