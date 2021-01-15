@@ -40,4 +40,11 @@ public class Lollipop extends Candy {
         result = 31 * result + (lollipopFlavor != null ? lollipopFlavor.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Lollipop{" +
+                "lollipopFlavor=" + lollipopFlavor +
+                '}';
+    }
 }

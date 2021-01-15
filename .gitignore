@@ -2,7 +2,6 @@
 *hometasks.iml
 /src/main/**
 !/src/**/java/
-!.md
 # Compiled class file
 *.class
 

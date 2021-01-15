@@ -7,10 +7,10 @@ public abstract class Candy {
      * Class Candy with parameters <b>name</b>, <b>sugarContent</b>, <b>weight</b>, <b>producer</b>
      * @author Rysard Poplavskij
      */
-    String name;
-    double sugarContent;
-    double weight;
-    Producer producer;
+    private String name;
+    private double sugarContent;
+    private double weight;
+    private Producer producer;
 
     public Candy() {
     }

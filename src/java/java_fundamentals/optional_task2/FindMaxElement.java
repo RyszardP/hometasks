@@ -1,7 +1,5 @@
 package java_fundamentals.optional_task2;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class FindMaxElement {
@@ -19,6 +17,7 @@ public class FindMaxElement {
          * @param matrix - the initial matrix
          * @param randomM - random number
          * @param maxElement - max element in the matrix
+         * @param resultMatrix - matrix without row and column containing maximum value
          */
 
         System.out.println("Enter the value of the matrix size: ");
@@ -45,8 +44,7 @@ public class FindMaxElement {
             System.out.println(" ");
         }
 
-
-        int maxElement = matrixValueMin;
+        int maxElement = matrix[0][0];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (matrix[i][j] > maxElement)
@@ -56,32 +54,52 @@ public class FindMaxElement {
         System.out.println(" ");
         System.out.println("The maximum element of the matrix: " + maxElement);
 
-        List<Integer> rowsWithMaxElement = new ArrayList<>();
-        List<Integer> colsWithMaxElement = new ArrayList<>();
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                int value = matrix[i][j];
-                if (value == maxElement) {
-                    rowsWithMaxElement.add(i);
-                    colsWithMaxElement.add(j);
+        boolean[] deleteRow = new boolean[matrix.length];
+        boolean[] deleteColumn = new boolean[matrix.length];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int k = 0; k < matrix.length; k++) {
+                if (matrix[i][k] == maxElement) {
+                    deleteRow[i] = true;
+                    deleteColumn[k] = true;
                 }
             }
         }
 
-        System.out.println();
-        System.out.println("The matrix after deleting roW and column:");
+        int deletingRow = 0;
+        int deletingColumn = 0;
+        for (boolean b : deleteRow) {
+            if (!b) {
+                deletingRow++;
+            }
+        }
+        for (boolean b : deleteColumn) {
+            if (!b) {
+                deletingColumn++;
+            }
+        }
 
+        int[][] resultMatrix = new int[deletingRow][deletingColumn];
+        int rowTmp = 0;
+        int columnTmp = 0;
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (rowsWithMaxElement.contains(i) || colsWithMaxElement.contains(j)) {
-                    matrix[i][j] = 0;
+            if (!deleteRow[i]) {
+                for (int k = 0; k < matrix[i].length; k++) {
+                    if (!deleteColumn[k]) {
+                        resultMatrix[rowTmp][columnTmp] = matrix[i][k];
+                        columnTmp++;
+                    }
                 }
-                System.out.print(" | " + matrix[i][j] + " | ");
+                rowTmp++;
+            }
+        }
+
+        System.out.println("The matrix after deleting row and column with maximum value");
+        for (int i = 0; i < resultMatrix.length; i++) {
+            for (int j = 0; j < resultMatrix[i].length; j++) {
+                System.out.print(" | " + resultMatrix[i][j] + " | ");
             }
             System.out.println();
         }
-
     }
 }
 

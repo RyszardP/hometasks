@@ -9,14 +9,11 @@ import clean_code.planes.Plane;
 
 import java.util.*;
 
-// version: 1.1
-// made by Vitali Shulha
-// 4-Jan-2019
 
 public class Airport {
     private List<? extends Plane> planes;
 
-    public List<PassengerPlane> getPasPl() {
+    public List<PassengerPlane> getPassengersPlane() {
         List<? extends Plane> l = this.planes;
         List<PassengerPlane> x = new ArrayList<>();
         for (Plane p : l) {
@@ -38,7 +35,7 @@ public class Airport {
     }
 
     public PassengerPlane getPassengerPlaneWithMaxPassengersCapacity() {
-        List<PassengerPlane> passengerPlanes = getPasPl();
+        List<PassengerPlane> passengerPlanes = getPassengersPlane();
         PassengerPlane planeWithMaxCapacity = passengerPlanes.get(0);
         for (int i = 0; i < passengerPlanes.size(); i++) {
             if (passengerPlanes.get(i).getPassengersCapacity() > planeWithMaxCapacity.getPassengersCapacity()) {
@@ -70,7 +67,6 @@ public class Airport {
             }
         }
         return bomberMilitaryPlanes;
-
     }
 
     public List<ExperimentalPlane> getExperimentalPlanes() {
@@ -95,7 +91,7 @@ public class Airport {
     public Airport sortByMaxSpeed() {
         Collections.sort(planes, new Comparator<Plane>() {
             public int compare(Plane o1, Plane o2) {
-                return o1.getMS() - o2.getMS();
+                return o1.getMaxSpeed() - o2.getMaxSpeed();
             }
         });
         return this;
@@ -104,7 +100,7 @@ public class Airport {
     public Airport sortByMaxLoadCapacity() {
         Collections.sort(planes, new Comparator<Plane>() {
             public int compare(Plane o1, Plane o2) {
-                return o1.getMinLoadCapacity() - o2.getMinLoadCapacity();
+                return o1.getMaxLoadCapacity() - o2.getMaxLoadCapacity();
             }
         });
         return this;
