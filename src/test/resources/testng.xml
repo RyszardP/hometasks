@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Tests" verbose="1" >
+    <test name="Test with utils" >
+        <classes>
+            <class name="hardcore.test.CloudsWithUtilsTest" />
+            <class name="hardcore.test.CloudWithTempMailoTest" />
+        </classes>
+    </test>
+</suite>

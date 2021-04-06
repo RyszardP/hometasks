@@ -11,31 +11,30 @@ import org.testng.annotations.Test;
 public class WebDriverTest {
     WebDriver chromeDriver;
 
-    private static WebDriver StartScenario(WebDriver driver) {
-        new PasteBinMainPage(driver)
-                .openPage()
-                .inputData()
-                .clickCreate();
-        return driver;
-    }
 
     @BeforeMethod(alwaysRun = true)
     public void browserSetup() {
         WebDriverManager.chromedriver().setup();
+        chromeDriver = new ChromeDriver();
+        chromeDriver.manage().window().maximize();
     }
 
+    @Test(description = "I can win hardcore.test scenario")
+    public void scenarioTest2() {
+        new PasteBinMainPage(this.chromeDriver)
+                .openPage()
+                .typeTitle("helloweb")
+                .inputData("Hello from WebDriver")
+                .checkExpiration()
+                .clickCreate();
 
-    @Test(description = "I can win test scenario")
-    public void scenarioTest() {
-        chromeDriver = StartScenario(new ChromeDriver());
     }
 
     @AfterMethod(alwaysRun = true)
     public void afterTestCompleted() {
-        driverQuit(chromeDriver);
+        chromeDriver.quit();
+        chromeDriver = null;
     }
 
-    private void driverQuit(WebDriver driver) {
-        driver.quit();
-    }
+
 }
