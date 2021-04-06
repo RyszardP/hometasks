@@ -1,0 +1,16 @@
+|---music
+    |---beatles
+        song.txt
+    |---bi2
+        angels.txt
+        because of me.txt
+        varvara.txt
+|---poems
+    |---lermontov
+        The Angel.txt
+        The Dream.txt
+    |---pushkin
+        Anchar.txt
+        Prisoner.txt
+        The Cloud.txt
+        The Demon.txt

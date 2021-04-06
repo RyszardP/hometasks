@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Command line suite" duration-ms="18755" started-at="2021-04-06T12:48:23Z" finished-at="2021-04-06T12:48:42Z">
+    <groups>
+    </groups>
+    <test name="Command line test" duration-ms="18755" started-at="2021-04-06T12:48:23Z" finished-at="2021-04-06T12:48:42Z">
+      <class name="optional_task.i_can_win.test.i_can_win.WebDriverTest">
+        <test-method status="PASS" signature="browserSetup()[pri:0, instance:optional_task.i_can_win.test.i_can_win.WebDriverTest@2d554825]" name="browserSetup" is-config="true" duration-ms="2160" started-at="2021-04-06T15:48:23Z" finished-at="2021-04-06T15:48:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserSetup -->
+        <test-method status="PASS" signature="scenarioTest2()[pri:0, instance:optional_task.i_can_win.test.i_can_win.WebDriverTest@2d554825]" name="scenarioTest2" duration-ms="3231" started-at="2021-04-06T15:48:25Z" description="I can win test scenario" finished-at="2021-04-06T15:48:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- scenarioTest2 -->
+        <test-method status="PASS" signature="afterTestCompleted()[pri:0, instance:optional_task.i_can_win.test.i_can_win.WebDriverTest@2d554825]" name="afterTestCompleted" is-config="true" duration-ms="674" started-at="2021-04-06T15:48:28Z" finished-at="2021-04-06T15:48:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTestCompleted -->
+      </class> <!-- optional_task.i_can_win.test.i_can_win.WebDriverTest -->
+      <class name="test.WithSimpleCalculatorTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:test.WithSimpleCalculatorTest@180bc464]" name="setUp" is-config="true" duration-ms="1256" started-at="2021-04-06T15:48:29Z" finished-at="2021-04-06T15:48:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="openCalculatorPage()[pri:0, instance:test.WithSimpleCalculatorTest@180bc464]" name="openCalculatorPage" duration-ms="10351" started-at="2021-04-06T15:48:30Z" finished-at="2021-04-06T15:48:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openCalculatorPage -->
+        <test-method status="PASS" signature="stopBrowser()[pri:0, instance:test.WithSimpleCalculatorTest@180bc464]" name="stopBrowser" is-config="true" duration-ms="1077" started-at="2021-04-06T15:48:40Z" finished-at="2021-04-06T15:48:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- stopBrowser -->
+      </class> <!-- test.WithSimpleCalculatorTest -->
+    </test> <!-- Command line test -->
+  </suite> <!-- Command line suite -->
+</testng-results>
