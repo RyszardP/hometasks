@@ -58,7 +58,6 @@ public class TenMinutesPage extends AbstractPage {
     public TenMinutesPage clickToMailWithSubject() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-
         new WebDriverWait(driver, 90).until(ExpectedConditions.presenceOfElementLocated(By
                 .xpath("//div[@id='mail_messages_content']//span[contains(text(),'Google')]"))).click();
 
@@ -72,7 +71,6 @@ public class TenMinutesPage extends AbstractPage {
         estimatedMonthlyCost
                 .getText()
                 .replaceAll("[^0-9.]", "");
-        // estimatedMonthlyCostInEMail = Double.parseDouble(string);
         return this;
     }
 

@@ -37,9 +37,6 @@ public class CloudWithTempMailoTest extends CommonConditions {
                 .createNewTab()
                 .switchTab();
 
-
-
-
         TempMailoPage tempMailoPage = new TempMailoPage(driver)
                 .openPage()
                 .getAddress(tempMailoPageModel)

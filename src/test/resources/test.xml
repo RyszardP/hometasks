@@ -3,7 +3,6 @@
 <suite name="Test" verbose="1" >
     <test name="Test with calculator page only" >
         <classes>
-            <class name="hardcore.test.WithSimpleCalculatorTest" />
             <class name="hardcore.test.CloudWithTempMailoTest" />
         </classes>
     </test>
