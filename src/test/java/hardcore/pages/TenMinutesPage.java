@@ -51,7 +51,7 @@ public class TenMinutesPage extends AbstractPage {
     }
 
     public TenMinutesPage switchTabToCalculate() {
-        driver.switchTo().window(GoogleCloudPlatformPricingCalculatorPage.tabs.get(0));
+        driver.switchTo().window(GoogleCloudCalculatorPage.tabs.get(0));
         return this;
     }
 
@@ -62,8 +62,6 @@ public class TenMinutesPage extends AbstractPage {
         new WebDriverWait(driver, 90).until(ExpectedConditions.presenceOfElementLocated(By
                 .xpath("//div[@id='mail_messages_content']//span[contains(text(),'Google')]"))).click();
 
-        //   new WebDriverWait(hardcore.driver, 10);
-        //  emailFromGoogleCloud.click();
         return this;
     }
 

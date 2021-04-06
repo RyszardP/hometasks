@@ -4,7 +4,7 @@ import hardcore.model.CalculationPageModel;
 import hardcore.model.GoogleCloudPageModel;
 import hardcore.model.TempMailoPageModel;
 import hardcore.pages.CloudGooglePage;
-import hardcore.pages.GoogleCloudPlatformPricingCalculatorPage;
+import hardcore.pages.GoogleCloudCalculatorPage;
 import hardcore.pages.TempMailoPage;
 import hardcore.service.CalculationPageCreator;
 import hardcore.service.GoogleCloudPageCreator;
@@ -18,7 +18,7 @@ public class CloudWithTempMailoTest extends CommonConditions {
         GoogleCloudPageModel cloudPageModel = GoogleCloudPageCreator.withSearchFromProperty();
         CalculationPageModel calculatorPageModel = CalculationPageCreator.withCredentialsFromProperty();
         TempMailoPageModel tempMailoPageModel = TempMailoPageCreator.withResultFromProperty();
-        GoogleCloudPlatformPricingCalculatorPage googlePage = new CloudGooglePage(driver)
+        GoogleCloudCalculatorPage googlePage = new CloudGooglePage(driver)
                 .openPage()
                 .typeInSearch(cloudPageModel)
                 .clickOnFirstResult()

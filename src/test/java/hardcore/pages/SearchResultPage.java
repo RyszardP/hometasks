@@ -40,13 +40,13 @@ public class SearchResultPage extends AbstractPage {
     }
 
     public SearchResultPage getFirstResult(SearchResultPageModel resultPageModel) {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable((WebElement) foundResultsLocator));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(foundResultsLocator));
         List<WebElement> findElements = driver.findElements(By.xpath(XPATH_TO_LINK));
         logger.info("Search performed");
         return new SearchResultPage(driver);
     }
 
-    public GoogleCloudPlatformPricingCalculatorPage clickOnEqualByText(String text) {
+    public GoogleCloudCalculatorPage clickOnEqualByText(String text) {
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(foundResultsLocator));
         List<WebElement> findElements = driver.findElements(By.xpath(XPATH_TO_LINK));
 
@@ -56,14 +56,14 @@ public class SearchResultPage extends AbstractPage {
                 break;
             }
         }
-        return new GoogleCloudPlatformPricingCalculatorPage(driver);
+        return new GoogleCloudCalculatorPage(driver);
     }
 
-    public GoogleCloudPlatformPricingCalculatorPage clickOnFirstResult() {
+    public GoogleCloudCalculatorPage clickOnFirstResult() {
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='gs-title'][1]")));
         WebElement findElement = driver.findElement(By.xpath("//a[@class='gs-title'][1]"));
         findElement.click();
         logger.info("first result");
-        return new GoogleCloudPlatformPricingCalculatorPage(driver);
+        return new GoogleCloudCalculatorPage(driver);
     }
 }

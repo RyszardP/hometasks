@@ -3,7 +3,7 @@ package hardcore.test;
 
 import hardcore.model.CalculationPageModel;
 import org.testng.annotations.Test;
-import hardcore.pages.GoogleCloudPlatformPricingCalculatorPage;
+import hardcore.pages.GoogleCloudCalculatorPage;
 import hardcore.service.CalculationPageCreator;
 
 public class WithSimpleCalculatorTest extends CommonConditions {
@@ -11,7 +11,7 @@ public class WithSimpleCalculatorTest extends CommonConditions {
     @Test
     public void openCalculatorPage() {
         CalculationPageModel calculatorPageModel = CalculationPageCreator.withCredentialsFromProperty();
-        GoogleCloudPlatformPricingCalculatorPage googlePage = new GoogleCloudPlatformPricingCalculatorPage(driver)
+        GoogleCloudCalculatorPage googlePage = new GoogleCloudCalculatorPage(driver)
                 .openPage()
                 .selectComputeEngine()
                 .typeNumberOfInstancesWithUtil(calculatorPageModel)

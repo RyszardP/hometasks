@@ -13,13 +13,10 @@ public class PasteBinMainPage extends AbstractPage {
     @FindBy(xpath = "//*[@id='select2-postform-expiration-container']")
     private WebElement timeExpirationDropDown;
 
-    @FindBy(xpath = "")
-    private WebElement syntaxDropDown;
-
     @FindBy(xpath = "//*[@class='select2-results__option' and text()='10 Minutes']")
     private WebElement tenMinutesExpiration;
 
-    @FindBy(xpath = "//*[@id='postform-name']")
+    @FindBy(xpath = "//input[@id='postform-name']")
     private WebElement titleField;
 
     @FindBy(xpath = "//button[@class='btn -big']")

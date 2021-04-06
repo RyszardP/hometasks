@@ -1,6 +1,7 @@
 /.idea/*
 *hometasks.iml
 !/src/**/java/
+/target/*
 # Compiled class file
 *.class
 

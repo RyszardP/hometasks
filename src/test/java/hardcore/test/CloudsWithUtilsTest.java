@@ -5,7 +5,7 @@ import hardcore.model.GoogleCloudPageModel;
 import hardcore.model.TempMailoPageModel;
 import hardcore.model.TenMinutesPageModel;
 import hardcore.pages.CloudGooglePage;
-import hardcore.pages.GoogleCloudPlatformPricingCalculatorPage;
+import hardcore.pages.GoogleCloudCalculatorPage;
 import hardcore.pages.TenMinutesPage;
 import hardcore.service.CalculationPageCreator;
 import hardcore.service.GoogleCloudPageCreator;
@@ -25,7 +25,7 @@ public class CloudsWithUtilsTest extends CommonConditions {
         CalculationPageModel calculatorPage = CalculationPageCreator.withCredentialsFromProperty();
         TenMinutesPageModel tenMinutesPageModel = TenMinutesPageCreator.withResultFromProperty();
         TempMailoPageModel tempMailoPage = TempMailoPageCreator.withResultFromProperty();
-        GoogleCloudPlatformPricingCalculatorPage googlePage = new CloudGooglePage(driver)
+        GoogleCloudCalculatorPage googlePage = new CloudGooglePage(driver)
                 .openPage()
                 .typeInSearch(cloudPageModel)
                 .clickOnFirstResult()
@@ -64,7 +64,7 @@ public class CloudsWithUtilsTest extends CommonConditions {
                 .switchToFrameCalculator()
                 .getEstimatedCost();
 
-        assertThat(GoogleCloudPlatformPricingCalculatorPage.estimatedMonthlyCostInGoogleCalculator,
+        assertThat(GoogleCloudCalculatorPage.estimatedMonthlyCostInGoogleCalculator,
                 is(equalTo(TenMinutesPage.estimatedMonthlyCostInEmailString)));
     }
 }

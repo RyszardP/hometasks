@@ -50,7 +50,7 @@ public class TempMailoPage extends AbstractPage {
     }
 
     public TempMailoPage switchTabToCalculate() {
-        driver.switchTo().window(GoogleCloudPlatformPricingCalculatorPage.tabs.get(0));
+        driver.switchTo().window(GoogleCloudCalculatorPage.tabs.get(0));
         return this;
     }
 
