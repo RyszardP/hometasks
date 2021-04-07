@@ -40,14 +40,14 @@ public class SearchResultPage extends AbstractPage {
     }
 
     public SearchResultPage getFirstResult(SearchResultPageModel resultPageModel) {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(foundResultsLocator));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(foundResultsLocator));
         List<WebElement> findElements = driver.findElements(By.xpath(XPATH_TO_LINK));
         logger.info("Search performed");
         return new SearchResultPage(driver);
     }
 
     public GoogleCloudCalculatorPage clickOnEqualByText(String text) {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(foundResultsLocator));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(foundResultsLocator));
         List<WebElement> findElements = driver.findElements(By.xpath(XPATH_TO_LINK));
 
         for (int i = 0; i < findElements.size(); i++) {
@@ -60,7 +60,7 @@ public class SearchResultPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage clickOnFirstResult() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='gs-title'][1]")));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='gs-title'][1]")));
         WebElement findElement = driver.findElement(By.xpath("//a[@class='gs-title'][1]"));
         findElement.click();
         logger.info("first result");

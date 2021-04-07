@@ -39,7 +39,7 @@ public class TenMinutesPage extends AbstractPage {
     WebElement estimatedMonthlyCost;
 
     public TenMinutesPage getAddress(TenMinutesPageModel pageModel) {
-        new WebDriverWait(driver, 20)
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions
                         .attributeContains(driver.findElement(By.id("mail_address")), "value", "@"));
         emailAddress = driver.findElement(By.id("mail_address")).getAttribute("value");
@@ -65,19 +65,19 @@ public class TenMinutesPage extends AbstractPage {
     }
 
     public TenMinutesPage getEstimatedMonthlyCostInEmail(TenMinutesPageModel pageModel) {
-        new WebDriverWait(driver, 10)
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions
                         .textMatches(By.xpath("//table[@class='quote']//tr[last()]/td[last()]/h3"), Pattern.compile("USD")));
         estimatedMonthlyCost
                 .getText()
                 .replaceAll("[^0-9.]", "");
+        logger.info("get estimated monthly cost");
         return this;
     }
 
     public TenMinutesPage getMessageFromTemporaryEmailService(TenMinutesPageModel pageModel) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//h3[contains(text(),'USD')]")));
-        System.out.println("USD is visible");
         System.out.println(estimatedMonthlyCost.getText());
         pageModel.setEstimatedMonthlyCost(estimatedMonthlyCost.getText().replaceAll("[^0-9.]", ""));
         System.out.println(pageModel.getEstimatedMonthlyCost());

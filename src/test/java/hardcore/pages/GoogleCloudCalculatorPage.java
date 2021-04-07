@@ -108,12 +108,12 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage selectComputeEngine() {
-        new WebDriverWait(driver, 10).until(elementToBeClickable(frame));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));
         driver.switchTo().frame(0);
-        new WebDriverWait(driver, 10);
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         driver.switchTo().frame(0);
         while (computeEngineButton.getAttribute("aria-selected").equalsIgnoreCase("false")) {
-            new WebDriverWait(driver, 5).until(visibilityOf(computeEngineButton))
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(computeEngineButton))
                     .click();
         }
         return this;
@@ -134,7 +134,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});"
                 , operatingSystemDropMenu);
         while (operatingSystemDropMenu.getAttribute("aria-expanded").equalsIgnoreCase("false")) {
-            new WebDriverWait(driver, 10).until(visibilityOf(operatingSystemDropMenu))
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(operatingSystemDropMenu))
                     .click();
         }
         driver.findElement(By.xpath("//md-option/div[contains(text(),'" + oS + "')]/..")).click();
@@ -143,7 +143,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
 
     public GoogleCloudCalculatorPage selectOSSoftwareWithUtil(CalculationPageModel pageModel) {
         while (operatingSystemDropMenu.getAttribute("aria-expanded").equalsIgnoreCase("false")) {
-            new WebDriverWait(driver, 10).until(visibilityOf(operatingSystemDropMenu))
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(operatingSystemDropMenu))
                     .click();
         }
         driver.findElement(By.xpath("//md-option/div[contains(text(),'" + pageModel.getOperationSystem() + "')]/..")).click();
@@ -155,7 +155,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});"
                 , vMClassDropDownMenu);
         while (vMClassDropDownMenu.getAttribute("aria-expanded").equalsIgnoreCase("false")) {
-            new WebDriverWait(driver, 5).until(visibilityOf(vMClassDropDownMenu))
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(vMClassDropDownMenu))
                     .click();
         }
         driver.findElement(By.xpath("//div[contains(@class,'md-active')]//md-option[contains(.,'"
@@ -168,7 +168,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});"
                 , vMClassDropDownMenu);
         while (vMClassDropDownMenu.getAttribute("aria-expanded").equalsIgnoreCase("false")) {
-            new WebDriverWait(driver, 5).until(visibilityOf(vMClassDropDownMenu))
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(vMClassDropDownMenu))
                     .click();
         }
         driver.findElement(By.xpath("//div[contains(@class,'md-active')]//md-option[contains(.,'"
@@ -227,7 +227,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
                 , instanceTypeDropDown);
 
         while (instanceTypeDropDown.getAttribute("aria-expanded").equalsIgnoreCase("false")) {
-            new WebDriverWait(driver, 10).until(visibilityOf(instanceTypeDropDown))
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(instanceTypeDropDown))
                     .click();
         }
 
@@ -239,15 +239,15 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
 
     public GoogleCloudCalculatorPage selectCheckBoxGPU(Integer numberOfGPUs, String gpuType) {
         if (addGpuCheckBox.getAttribute("aria-disabled").equalsIgnoreCase("false")) {
-            new WebDriverWait(driver, 10).until(visibilityOf(addGpuCheckBox))
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(addGpuCheckBox))
                     .click();
         }
-        new WebDriverWait(driver, 5)
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.elementToBeClickable(gpuQuantityDropDown)).click();
 
         driver.findElement(By.xpath("//md-option[contains(@ng-disabled, " +
                 "'GPU')]/div[contains(text(),'" + numberOfGPUs + "')]")).click();
-        new WebDriverWait(driver, 5)
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.elementToBeClickable(gpuTypeDropDown)).click();
         driver.findElement(By.xpath("//md-option/div[contains(text(),'" + gpuType + "')]")).click();
         logger.info("Select GPU");
@@ -288,7 +288,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
                 , localSSDDropDown);
 
         while (localSSDDropDown.getAttribute("aria-expanded").equalsIgnoreCase("false")) {
-            new WebDriverWait(driver, 5).until(visibilityOf(localSSDDropDown))
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(localSSDDropDown))
                     .click();
         }
         driver.findElement(By.xpath("//md-option/div[contains(text(),'" + localSSD + "')]")).click();
@@ -348,7 +348,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
                 , committedUsageDropDown);
 
         while (committedUsageDropDown.getAttribute("aria-expanded").equalsIgnoreCase("false")) {
-            new WebDriverWait(driver, 5).until(visibilityOf(committedUsageDropDown))
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(committedUsageDropDown))
                     .click();
         }
         driver.findElement(By.xpath("//div[contains(@class,'md-active')]//div[contains(text(), '" + usage + "')]")).click();
@@ -363,7 +363,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
                 , committedUsageDropDown);
 
         while (committedUsageDropDown.getAttribute("aria-expanded").equalsIgnoreCase("false")) {
-            new WebDriverWait(driver, 5).until(visibilityOf(committedUsageDropDown))
+            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(committedUsageDropDown))
                     .click();
         }
         driver.findElement(By.xpath("//div[contains(@class,'md-active')]//div[contains(text(), '" +
@@ -404,39 +404,39 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
 
 
     public GoogleCloudCalculatorPage switchToFrameCalculator() {
-        new WebDriverWait(driver, 10).until(elementToBeClickable(frame));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));
         driver.switchTo().frame(0);
-        new WebDriverWait(driver, 15);
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         driver.switchTo().frame(0);
         return this;
     }
 
     public GoogleCloudCalculatorPage clickToEmailEstimate() {
-        new WebDriverWait(driver, 15)
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.elementToBeClickable(emailEstimateButton)).click();
         return this;
     }
 
     public GoogleCloudCalculatorPage inputTenMinutesEmailInEstimate(TenMinutesPageModel pageModel) {
-        new WebDriverWait(driver, 15).until(visibilityOf(emailFieldInEstimate))
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(emailFieldInEstimate))
                 .sendKeys(pageModel.getEmailAddress());
         return this;
     }
 
     public GoogleCloudCalculatorPage inputTempMailoInEstimate(TempMailoPageModel pageModel) {
-        new WebDriverWait(driver, 15).until(visibilityOf(emailFieldInEstimate))
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(emailFieldInEstimate))
                 .sendKeys(pageModel.getEmailAddress());
         return this;
     }
 
     public GoogleCloudCalculatorPage clickSendEmailButton() {
-        new WebDriverWait(driver, 15)
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.elementToBeClickable(sendEmailInputButton)).click();
         return this;
     }
 
     public GoogleCloudCalculatorPage getEstimatedCost() {
-        new WebDriverWait(driver, 15)
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions
                         .textMatches(By.xpath("//md-card-content[@id='resultBlock']//div/b[contains(text(),Total)]"),
                                 Pattern.compile("USD")));

@@ -2,9 +2,9 @@ package hardcore.test;
 
 
 import hardcore.model.CalculationPageModel;
-import org.testng.annotations.Test;
 import hardcore.pages.GoogleCloudCalculatorPage;
 import hardcore.service.CalculationPageCreator;
+import org.testng.annotations.Test;
 
 public class WithSimpleCalculatorTest extends CommonConditions {
 

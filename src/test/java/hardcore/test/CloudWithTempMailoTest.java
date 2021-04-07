@@ -11,10 +11,14 @@ import hardcore.service.GoogleCloudPageCreator;
 import hardcore.service.TempMailoPageCreator;
 import org.testng.annotations.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+
 public class CloudWithTempMailoTest extends CommonConditions {
 
-    @Test
-    public void openAndCheck()  {
+   @Test
+    public void openAndCheck() {
         GoogleCloudPageModel cloudPageModel = GoogleCloudPageCreator.withSearchFromProperty();
         CalculationPageModel calculatorPageModel = CalculationPageCreator.withCredentialsFromProperty();
         TempMailoPageModel tempMailoPageModel = TempMailoPageCreator.withResultFromProperty();
@@ -47,6 +51,18 @@ public class CloudWithTempMailoTest extends CommonConditions {
                 .inputTempMailoInEstimate(tempMailoPageModel)
                 .clickSendEmailButton()
                 .switchTab();
+
+        tempMailoPage
+                .clickToMailWithSubject()
+                .getMessageFromTemporaryEmailService(tempMailoPageModel)
+                .switchTabToCalculate();
+
+        googlePage
+                .switchToFrameCalculator()
+                .getEstimatedCost();
+
+        assertThat(GoogleCloudCalculatorPage.estimatedMonthlyCostInGoogleCalculator,
+                is(equalTo(TempMailoPage.estimatedMonthlyCostInEmailString)));
 
     }
 }

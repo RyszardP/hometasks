@@ -14,6 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.regex.Pattern;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+
 public class TempMailoPage extends AbstractPage {
 
     public static String emailAddress;
@@ -39,8 +41,11 @@ public class TempMailoPage extends AbstractPage {
     @FindBy(xpath = "//h3[contains(text(),'USD')]")
     WebElement estimatedMonthlyCost;
 
+    @FindBy(xpath = "//iframe[@id='fullmessage']")
+    private WebElement frame;
+
     public TempMailoPage getAddress(TempMailoPageModel pageModel) {
-        new WebDriverWait(driver, 20)
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions
                         .attributeContains(driver.findElement(By.id("i-email")), "value", "@"));
         emailAddress = driver.findElement(By.id("i-email")).getAttribute("value");
@@ -58,23 +63,51 @@ public class TempMailoPage extends AbstractPage {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         new WebDriverWait(driver, 90).until(ExpectedConditions.presenceOfElementLocated(By
-                .xpath("//div[@id='mail_messages_content']//span[contains(text(),'Google')]"))).click();
+                .xpath("//div[@class='mail-item-sub'][contains(text(),'Google')]"))).click();
+        logger.info("click to mail with subject ");
         return this;
     }
 
-    public TempMailoPage getEstimatedMonthlyCostInEmail(TempMailoPageModel  pageModel) {
-        new WebDriverWait(driver, 10)
+    public TempMailoPage clickToHelloMessage() {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        new WebDriverWait(driver, 90).until(ExpectedConditions.presenceOfElementLocated(By
+                .xpath("//div[@class='mail-item-sub'][contains(text(),'Welcome')]"))).click();
+        logger.info("click to mail with hello message ");
+        return this;
+    }
+
+    public TempMailoPage findHello() {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));
+        driver.switchTo().frame(frame);
+
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("//p[contains(text(),'All the best')]")));
+
+        return this;
+    }
+
+    public TempMailoPage getEstimatedMonthlyCostInEmail(TempMailoPageModel pageModel) {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));
+        driver.switchTo().frame(frame);
+
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions
                         .textMatches(By.xpath("//table[@class='quote']//tr[last()]/td[last()]/h3"), Pattern.compile("USD")));
         estimatedMonthlyCost
                 .getText()
                 .replaceAll("[^0-9.]", "");
+        logger.info("get estimated monthly cost");
         return this;
     }
 
-    public TempMailoPage getMessageFromTemporaryEmailService(TempMailoPageModel  pageModel) {
+    public TempMailoPage getMessageFromTemporaryEmailService(TempMailoPageModel pageModel) {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));
+        driver.switchTo().frame(frame);
+
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//h3[contains(text(),'USD')]")));
+        logger.info("USD is visible");
         System.out.println("USD is visible");
         System.out.println(estimatedMonthlyCost.getText());
         pageModel.setEstimatedMonthlyCost(estimatedMonthlyCost.getText().replaceAll("[^0-9.]", ""));

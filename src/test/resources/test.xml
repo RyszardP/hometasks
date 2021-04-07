@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Test" verbose="1" >
-    <test name="Test with calculator page only" >
+    <test name="Test with tempMailo page" >
         <classes>
             <class name="hardcore.test.CloudWithTempMailoTest" />
         </classes>
