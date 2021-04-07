@@ -445,7 +445,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
                 .replace("1 month", "")
                 .replaceAll("[^0-9.]", "");
         estimatedMonthlyCostInGoogleCalculator = Double.parseDouble(string);
-        logger.info("Estimated monthly cost in calculator " + estimatedMonthlyCostInGoogleCalculator);
+        logger.info("Estimated monthly cost in calculator page " + estimatedMonthlyCostInGoogleCalculator);
         return this;
     }
 

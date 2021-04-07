@@ -45,8 +45,6 @@ public class TenMinutesPage extends AbstractPage {
         emailAddress = driver.findElement(By.id("mail_address")).getAttribute("value");
         logger.info("get address ");
         pageModel.setEmailAddress(emailAddress);
-        System.out.println(emailAddress);
-        System.out.println(pageModel.getEmailAddress() + "get address from pageModel");
         return this;
     }
 
@@ -78,10 +76,11 @@ public class TenMinutesPage extends AbstractPage {
     public TenMinutesPage getMessageFromTemporaryEmailService(TenMinutesPageModel pageModel) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//h3[contains(text(),'USD')]")));
-        System.out.println(estimatedMonthlyCost.getText());
+
         pageModel.setEstimatedMonthlyCost(estimatedMonthlyCost.getText().replaceAll("[^0-9.]", ""));
-        System.out.println(pageModel.getEstimatedMonthlyCost());
+
         logger.info("Estimated monthly cost in email " + pageModel.getEstimatedMonthlyCost());
+
         return this;
     }
 

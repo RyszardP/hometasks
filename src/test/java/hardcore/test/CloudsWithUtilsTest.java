@@ -11,7 +11,6 @@ import hardcore.service.CalculationPageCreator;
 import hardcore.service.GoogleCloudPageCreator;
 import hardcore.service.TempMailoPageCreator;
 import hardcore.service.TenMinutesPageCreator;
-import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -19,7 +18,7 @@ import static org.hamcrest.Matchers.is;
 
 public class CloudsWithUtilsTest extends CommonConditions {
 
-    @Test
+  //  @Test(description = "test with utils")
     public void openCloudPage() {
         GoogleCloudPageModel cloudPageModel = GoogleCloudPageCreator.withSearchFromProperty();
         CalculationPageModel calculatorPage = CalculationPageCreator.withCredentialsFromProperty();

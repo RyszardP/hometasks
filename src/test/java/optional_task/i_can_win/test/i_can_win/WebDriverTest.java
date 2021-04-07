@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 public class WebDriverTest {
     WebDriver chromeDriver;
@@ -19,7 +18,7 @@ public class WebDriverTest {
         chromeDriver.manage().window().maximize();
     }
 
-    @Test(description = "I can win hardcore.test scenario")
+   // @Test(description = "I can win hardcore.test scenario")
     public void scenarioTest2() {
         new PasteBinMainPage(this.chromeDriver)
                 .openPage()

@@ -62,7 +62,7 @@ public class CloudWithTempMailoTest extends CommonConditions {
                 .getEstimatedCost();
 
         assertThat(GoogleCloudCalculatorPage.estimatedMonthlyCostInGoogleCalculator,
-                is(equalTo(TempMailoPage.estimatedMonthlyCostInEmailString)));
+                is(equalTo(TempMailoPage.estimatedMonthlyCostInEMail)));
 
     }
 }

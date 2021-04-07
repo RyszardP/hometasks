@@ -108,11 +108,10 @@ public class TempMailoPage extends AbstractPage {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//h3[contains(text(),'USD')]")));
         logger.info("USD is visible");
-        System.out.println("USD is visible");
-        System.out.println(estimatedMonthlyCost.getText());
         pageModel.setEstimatedMonthlyCost(estimatedMonthlyCost.getText().replaceAll("[^0-9.]", ""));
-        System.out.println(pageModel.getEstimatedMonthlyCost());
-        logger.info("Estimated monthly cost in email " + pageModel.getEstimatedMonthlyCost());
+        estimatedMonthlyCostInEMail = Double.parseDouble(pageModel.getEstimatedMonthlyCost());
+        logger.info("Estimated monthly cost in email " + estimatedMonthlyCostInEMail);
+
         return this;
     }
 }
