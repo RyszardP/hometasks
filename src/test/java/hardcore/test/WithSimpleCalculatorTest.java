@@ -4,10 +4,11 @@ package hardcore.test;
 import hardcore.model.CalculationPageModel;
 import hardcore.pages.GoogleCloudCalculatorPage;
 import hardcore.service.CalculationPageCreator;
+import org.testng.annotations.Test;
 
 public class WithSimpleCalculatorTest extends CommonConditions {
 
- //   @Test
+    @Test
     public void openCalculatorPage() {
         CalculationPageModel calculatorPageModel = CalculationPageCreator.withCredentialsFromProperty();
         GoogleCloudCalculatorPage googlePage = new GoogleCloudCalculatorPage(driver)
