@@ -1,6 +1,5 @@
 package hardcore.pages;
 
-import hardcore.model.SearchResultPageModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -39,25 +38,6 @@ public class SearchResultPage extends AbstractPage {
         return this;
     }
 
-    public SearchResultPage getFirstResult(SearchResultPageModel resultPageModel) {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(foundResultsLocator));
-        List<WebElement> findElements = driver.findElements(By.xpath(XPATH_TO_LINK));
-        logger.info("Search performed");
-        return new SearchResultPage(driver);
-    }
-
-    public GoogleCloudCalculatorPage clickOnEqualByText(String text) {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(foundResultsLocator));
-        List<WebElement> findElements = driver.findElements(By.xpath(XPATH_TO_LINK));
-
-        for (int i = 0; i < findElements.size(); i++) {
-            if (findElements.get(i).getText().contains(text)) {
-                findElements.get(i).click();
-                break;
-            }
-        }
-        return new GoogleCloudCalculatorPage(driver);
-    }
 
     public GoogleCloudCalculatorPage clickOnFirstResult() {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='gs-title'][1]")));

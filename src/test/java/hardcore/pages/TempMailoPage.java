@@ -12,8 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.regex.Pattern;
-
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public class TempMailoPage extends AbstractPage {
@@ -68,38 +66,6 @@ public class TempMailoPage extends AbstractPage {
         return this;
     }
 
-    public TempMailoPage clickToHelloMessage() {
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        new WebDriverWait(driver, 90).until(ExpectedConditions.presenceOfElementLocated(By
-                .xpath("//div[@class='mail-item-sub'][contains(text(),'Welcome')]"))).click();
-        logger.info("click to mail with hello message ");
-        return this;
-    }
-
-    public TempMailoPage findHello() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));
-        driver.switchTo().frame(frame);
-
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//p[contains(text(),'All the best')]")));
-
-        return this;
-    }
-
-    public TempMailoPage getEstimatedMonthlyCostInEmail(TempMailoPageModel pageModel) {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));
-        driver.switchTo().frame(frame);
-
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions
-                        .textMatches(By.xpath("//table[@class='quote']//tr[last()]/td[last()]/h3"), Pattern.compile("USD")));
-        estimatedMonthlyCost
-                .getText()
-                .replaceAll("[^0-9.]", "");
-        logger.info("get estimated monthly cost");
-        return this;
-    }
 
     public TempMailoPage getMessageFromTemporaryEmailService(TempMailoPageModel pageModel) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));

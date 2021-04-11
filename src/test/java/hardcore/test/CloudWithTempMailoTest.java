@@ -9,7 +9,10 @@ import hardcore.pages.TempMailoPage;
 import hardcore.service.CalculationPageCreator;
 import hardcore.service.GoogleCloudPageCreator;
 import hardcore.service.TempMailoPageCreator;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -17,8 +20,9 @@ import static org.hamcrest.Matchers.is;
 
 public class CloudWithTempMailoTest extends CommonConditions {
 
-   @Test
+    @Test
     public void openAndCheck() {
+
         GoogleCloudPageModel cloudPageModel = GoogleCloudPageCreator.withSearchFromProperty();
         CalculationPageModel calculatorPageModel = CalculationPageCreator.withCredentialsFromProperty();
         TempMailoPageModel tempMailoPageModel = TempMailoPageCreator.withResultFromProperty();
@@ -37,25 +41,31 @@ public class CloudWithTempMailoTest extends CommonConditions {
                 .selectLocationWithUtil(calculatorPageModel)
                 .selectCommittedUsageWithUtil(calculatorPageModel)
                 .clickAddToEstimate()
-                .clickToEmailEstimate()
-                .createNewTab()
-                .switchTab();
+                .clickToEmailEstimate();
+
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
 
         TempMailoPage tempMailoPage = new TempMailoPage(driver)
                 .openPage()
-                .getAddress(tempMailoPageModel)
-                .switchTabToCalculate();
+                .getAddress(tempMailoPageModel);
+
+        driver.switchTo().window(tabs.get(0));
 
         googlePage
-                .switchToFrameCalculator()
+               .switchToFrameCalculator()
                 .inputTempMailoInEstimate(tempMailoPageModel)
-                .clickSendEmailButton()
-                .switchTab();
+                .clickSendEmailButton();
+
+        driver.switchTo().window(tabs.get(1));
 
         tempMailoPage
                 .clickToMailWithSubject()
-                .getMessageFromTemporaryEmailService(tempMailoPageModel)
-                .switchTabToCalculate();
+                .getMessageFromTemporaryEmailService(tempMailoPageModel);
+
+        driver.switchTo().window(tabs.get(0));
 
         googlePage
                 .switchToFrameCalculator()

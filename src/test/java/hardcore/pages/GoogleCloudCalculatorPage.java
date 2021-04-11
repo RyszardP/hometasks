@@ -65,7 +65,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(xpath = "//button[@aria-label='Add to Estimate'] [not(contains(@disabled,'disabled'))]")
     WebElement addToEstimateButton;
 
-    @FindBy(xpath = "//button[@aria-label='Email Estimate'] [not(contains(@disabled,'disabled'))]")
+    @FindBy(xpath = "//button[contains(text(),'Email Estimate')] [not(contains(@disabled,'disabled'))]")
     WebElement emailEstimateButton;
 
     @FindBy(xpath = "//input[@type='email']")
@@ -191,23 +191,12 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
         return this;
     }
 
-    public GoogleCloudCalculatorPage createNewTab() {
-        ((JavascriptExecutor) driver).executeScript("window.open()");
-        return this;
-    }
-
-    public GoogleCloudCalculatorPage switchTab() {
-        tabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
-        return this;
-    }
-
     public GoogleCloudCalculatorPage switchToFrameCalculator() {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));
         driver.switchTo().frame(0);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         driver.switchTo().frame(0);
-        return this;
+        return new GoogleCloudCalculatorPage(this.driver);
     }
 
     public GoogleCloudCalculatorPage clickToEmailEstimate() {
