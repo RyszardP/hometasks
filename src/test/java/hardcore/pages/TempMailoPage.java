@@ -8,7 +8,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,7 +23,6 @@ public class TempMailoPage extends AbstractPage {
 
     public TempMailoPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(this.driver, this);
     }
 
     @Override
@@ -52,10 +50,6 @@ public class TempMailoPage extends AbstractPage {
         return this;
     }
 
-    public TempMailoPage switchTabToCalculate() {
-        driver.switchTo().window(GoogleCloudCalculatorPage.tabs.get(0));
-        return this;
-    }
 
     public TempMailoPage clickToMailWithSubject() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
