@@ -4,7 +4,6 @@ import hardcore.model.CalculatorPageFrameModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -228,31 +227,5 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
         logger.info("Estimated monthly cost in calculator page " + estimatedMonthlyCostInGoogleCalculator);
         return this;
     }
-
-    protected void openDropDownMenu(WebElement openedDropDropMenu) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});"
-                , openedDropDropMenu);
-        while (openedDropDropMenu.getAttribute("aria-expanded").equalsIgnoreCase("false")) {
-            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.visibilityOf(openedDropDropMenu))
-                    .click();
-        }
-    }
-
-    protected void clickToCheckBox(WebElement checkboxToClick) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});"
-                , checkboxToClick);
-        if (checkboxToClick.getAttribute("aria-disabled").equalsIgnoreCase("false")) {
-            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(checkboxToClick))
-                    .click();
-        }
-    }
-
-    protected void elementWaitAndClick(WebElement element) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});"
-                , element);
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.elementToBeClickable(element)).click();
-    }
-
 
 }
