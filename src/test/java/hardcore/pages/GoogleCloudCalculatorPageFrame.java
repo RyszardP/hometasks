@@ -1,7 +1,6 @@
 package hardcore.pages;
 
 import hardcore.model.CalculatorPageFrameModel;
-import hardcore.model.TempMailoPageModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -91,15 +90,15 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
 
     public GoogleCloudCalculatorPageFrame fillCalculation(CalculatorPageFrameModel pageModel) {
         selectComputeEngine()
-                .typeNumberOfInstancesWithUtil(pageModel)
-                .selectOSSoftwareWithUtil(pageModel)
-                .selectMachineClassWithUtil(pageModel)
-                .selectSeriesWithUtil(pageModel)
-                .selectInstanceWithUtil(pageModel)
+                .typeNumberOfInstancesWithUtil(pageModel.getNumberOfInstances())
+                .selectOSSoftwareWithUtil(pageModel.getOperationSystem())
+                .selectMachineClassWithUtil(pageModel.getMachineClass())
+                .selectSeriesWithUtil(pageModel.getSeries())
+                .selectInstanceWithUtil(pageModel.getInstanceType())
                 .selectCheckBoxGPUWithUtil(pageModel)
-                .selectSSDWithUtil(pageModel)
-                .selectLocationWithUtil(pageModel)
-                .selectCommittedUsageWithUtil(pageModel);
+                .selectSSDWithUtil(pageModel.getSsd())
+                .selectLocationWithUtil(pageModel.getLocation())
+                .selectCommittedUsageWithUtil(pageModel.getCommittedUsage());
         return this;
     }
 
@@ -111,40 +110,40 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
     }
 
 
-    public GoogleCloudCalculatorPageFrame typeNumberOfInstancesWithUtil(CalculatorPageFrameModel pageModel) {
-        numberOfInstancesField.sendKeys(pageModel.getNumberOfInstances());
+    public GoogleCloudCalculatorPageFrame typeNumberOfInstancesWithUtil(String string) {
+        numberOfInstancesField.sendKeys(string);
         logger.info("Type instances number");
         return this;
     }
 
-    public GoogleCloudCalculatorPageFrame selectOSSoftwareWithUtil(CalculatorPageFrameModel pageModel) {
+    public GoogleCloudCalculatorPageFrame selectOSSoftwareWithUtil(String string) {
         openDropDownMenu(operatingSystemDropMenu);
-        driver.findElement(By.xpath("//md-option/div[contains(text(),'" + pageModel.getOperationSystem() + "')]/.."))
+        driver.findElement(By.xpath("//md-option/div[contains(text(),'" + string + "')]/.."))
                 .click();
         logger.info("Select OS software");
         return this;
     }
 
-    public GoogleCloudCalculatorPageFrame selectMachineClassWithUtil(CalculatorPageFrameModel pageModel) {
+    public GoogleCloudCalculatorPageFrame selectMachineClassWithUtil(String string) {
         openDropDownMenu(vMClassDropDownMenu);
         driver.findElement(By.xpath("//div[contains(@class,'md-active')]//md-option[contains(.,'"
-                + pageModel.getMachineClass() + "')]")).click();
+                + string + "')]")).click();
         logger.info("Select machine class");
         return this;
     }
 
-    public GoogleCloudCalculatorPageFrame selectSeriesWithUtil(CalculatorPageFrameModel pageModel) {
+    public GoogleCloudCalculatorPageFrame selectSeriesWithUtil(String string) {
         openDropDownMenu(seriesDropDownMenu);
         driver.findElement(By.xpath("//div[contains(@class, 'md-active')]//md-option[contains(.,'" +
-                pageModel.getSeries() + "')]")).click();
+                string + "')]")).click();
         logger.info("Select series");
         return this;
     }
 
-    public GoogleCloudCalculatorPageFrame selectInstanceWithUtil(CalculatorPageFrameModel pageModel) {
+    public GoogleCloudCalculatorPageFrame selectInstanceWithUtil(String string) {
         openDropDownMenu(instanceTypeDropDown);
         driver.findElement(By.xpath("//div[contains(@class, 'md-active')]//md-option[contains(.,'" +
-                pageModel.getInstanceType() + "')]")).click();
+                string + "')]")).click();
         logger.info("Select instances");
         return this;
     }
@@ -154,7 +153,7 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
         elementWaitAndClick(gpuQuantityDropDown);
         logger.info("Select gpu Quantity");
         driver.findElement(By.xpath("//md-option[contains(@ng-disabled, " +
-                "'GPU')]/div[contains(text(),'" + pageModel.getNumberOfGPU() + "')]")).click();
+                "'GPU')]/div[contains(text(),'" + pageModel.getNumberOfGPU()  + "')]")).click();
         elementWaitAndClick(gpuTypeDropDown);
         logger.info("Select gpu Type");
         driver.findElement(By.xpath("//md-option/div[contains(text(),'" + pageModel.getGpuType() + "')]")).click();
@@ -163,28 +162,28 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
     }
 
 
-    public GoogleCloudCalculatorPageFrame selectSSDWithUtil(CalculatorPageFrameModel pageModel) {
+    public GoogleCloudCalculatorPageFrame selectSSDWithUtil(String string) {
         openDropDownMenu(localSSDDropDown);
-        driver.findElement(By.xpath("//md-option/div[contains(text(),'" + pageModel.getSsd() + "')]")).click();
+        driver.findElement(By.xpath("//md-option/div[contains(text(),'" + string + "')]")).click();
         logger.info("Select SSD");
         return this;
     }
 
 
-    public GoogleCloudCalculatorPageFrame selectLocationWithUtil(CalculatorPageFrameModel pageModel) {
+    public GoogleCloudCalculatorPageFrame selectLocationWithUtil(String string) {
         openDropDownMenu(locationDropDown);
         driver.findElement(By.xpath("//div[@aria-hidden = 'false']//div[contains(text(),'" +
-                pageModel.getLocation() + "')]"))
+                string + "')]"))
                 .click();
         logger.info("Select Location");
         return this;
     }
 
 
-    public GoogleCloudCalculatorPageFrame selectCommittedUsageWithUtil(CalculatorPageFrameModel pageModel) {
+    public GoogleCloudCalculatorPageFrame selectCommittedUsageWithUtil(String string) {
         openDropDownMenu(committedUsageDropDown);
         driver.findElement(By.xpath("//div[contains(@class,'md-active')]//div[contains(text(), '" +
-                pageModel.getCommittedUsage() + "')]")).click();
+                string + "')]")).click();
         logger.info("Select Committed Usage");
         return this;
     }
@@ -202,10 +201,10 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
         return this;
     }
 
-    public GoogleCloudCalculatorPageFrame inputTempMailoInEstimate(TempMailoPageModel pageModel) {
+    public GoogleCloudCalculatorPageFrame inputTempMailoInEstimate(String emailAddress) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(emailFieldInEstimate))
-                .sendKeys(pageModel.getEmailAddress());
-        logger.info("input email " + pageModel.getEmailAddress());
+                .sendKeys(emailAddress);
+        logger.info("input email " + emailAddress);
         return this;
     }
 

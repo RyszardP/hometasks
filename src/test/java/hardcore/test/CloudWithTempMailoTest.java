@@ -47,7 +47,7 @@ public class CloudWithTempMailoTest extends CommonConditions {
 
         googlePage
                 .switchToFrameCalculator()
-                .inputTempMailoInEstimate(tempMailoPageModel)
+                .inputTempMailoInEstimate(tempMailoPageModel.getEmailAddress())
                 .clickSendEmailButton();
 
         driver.switchTo().window(tabs.get(1));
