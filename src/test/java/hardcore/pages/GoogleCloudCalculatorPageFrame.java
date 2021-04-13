@@ -28,7 +28,7 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
         PageFactory.initElements(this.driver, this);
     }
 
-    @Override
+
     public GoogleCloudCalculatorPageFrame openPage() {
         driver.navigate().to(PAGE_URL);
         logger.info("calculator page opened");
@@ -88,6 +88,20 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
 
     @FindBy(xpath = "//iframe")
     private WebElement frame;
+
+    public GoogleCloudCalculatorPageFrame fillCalculation(CalculatorPageFrameModel pageModel) {
+        selectComputeEngine()
+                .typeNumberOfInstancesWithUtil(pageModel)
+                .selectOSSoftwareWithUtil(pageModel)
+                .selectMachineClassWithUtil(pageModel)
+                .selectSeriesWithUtil(pageModel)
+                .selectInstanceWithUtil(pageModel)
+                .selectCheckBoxGPUWithUtil(pageModel)
+                .selectSSDWithUtil(pageModel)
+                .selectLocationWithUtil(pageModel)
+                .selectCommittedUsageWithUtil(pageModel);
+        return this;
+    }
 
     public GoogleCloudCalculatorPageFrame selectComputeEngine() {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(computeEngineButton))

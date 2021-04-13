@@ -39,7 +39,7 @@ public class CloudGooglePage extends AbstractPage {
     }
 
     public SearchResultPage typeInSearch(String inputData) {
-        // new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(searchField));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(searchField));
         searchField.sendKeys(inputData);
         searchField.sendKeys(Keys.ENTER);
         return new SearchResultPage(driver);

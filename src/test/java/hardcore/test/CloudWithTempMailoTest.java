@@ -30,16 +30,7 @@ public class CloudWithTempMailoTest extends CommonConditions {
                 .typeInSearch(cloudPageModel.getSearch())
                 .clickOnFirstResult()
                 .switchToFrameCalculator()
-                .selectComputeEngine()
-                .typeNumberOfInstancesWithUtil(calculatorPageFrameModel)
-                .selectOSSoftwareWithUtil(calculatorPageFrameModel)
-                .selectMachineClassWithUtil(calculatorPageFrameModel)
-                .selectSeriesWithUtil(calculatorPageFrameModel)
-                .selectInstanceWithUtil(calculatorPageFrameModel)
-                .selectCheckBoxGPUWithUtil(calculatorPageFrameModel)
-                .selectSSDWithUtil(calculatorPageFrameModel)
-                .selectLocationWithUtil(calculatorPageFrameModel)
-                .selectCommittedUsageWithUtil(calculatorPageFrameModel)
+                .fillCalculation(calculatorPageFrameModel)
                 .clickAddToEstimate()
                 .clickToEmailEstimate();
 
@@ -70,7 +61,6 @@ public class CloudWithTempMailoTest extends CommonConditions {
         googlePage
                 .switchToFrameCalculator()
                 .getEstimatedCost();
-
 
 
     }
