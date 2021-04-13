@@ -3,20 +3,22 @@ package hardcore.test;
 
 import hardcore.model.CalculatorPageFrameModel;
 import hardcore.model.GoogleCloudPageModel;
+import hardcore.pages.CloudGooglePage;
+import hardcore.pages.GoogleCloudCalculatorPageFrame;
 import hardcore.service.CalculatorPageFrameCreator;
 import hardcore.service.GoogleCloudPageCreator;
-import org.testng.annotations.Test;
 
 public class WithSimpleCalculatorTest extends CommonConditions {
 
-    @Test
+    //  @Test
     public void openCalculatorPage() {
         GoogleCloudPageModel cloudPageModel = GoogleCloudPageCreator.withSearchFromProperty();
         CalculatorPageFrameModel calculatorPageFrameModel = CalculatorPageFrameCreator.withCredentialsFromProperty();
- /*       GoogleCloudCalculatorPageFrame googlePage = new CloudGooglePage(driver)
+        GoogleCloudCalculatorPageFrame googlePage = new CloudGooglePage(driver)
                 .openPage()
                 .typeInSearch(cloudPageModel.getSearch())
                 .clickOnFirstResult()
+                .switchToFrameCalculator()
                 .selectComputeEngine()
                 .typeNumberOfInstancesWithUtil(calculatorPageFrameModel)
                 .selectOSSoftwareWithUtil(calculatorPageFrameModel)
@@ -28,7 +30,7 @@ public class WithSimpleCalculatorTest extends CommonConditions {
                 .selectLocationWithUtil(calculatorPageFrameModel)
                 .selectCommittedUsageWithUtil(calculatorPageFrameModel)
                 .clickAddToEstimate()
-                .clickToEmailEstimate();*/
+                .clickToEmailEstimate();
     }
 
 }

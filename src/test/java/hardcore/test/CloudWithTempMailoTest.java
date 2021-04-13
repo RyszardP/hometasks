@@ -27,9 +27,7 @@ public class CloudWithTempMailoTest extends CommonConditions {
         TempMailoPageModel tempMailoPageModel = TempMailoPageCreator.withResultFromProperty();
         GoogleCloudCalculatorPageFrame googlePage = new CloudGooglePage(driver)
                 .openPage()
-
-
-               .typeInSearch(cloudPageModel.getSearch())
+                .typeInSearch(cloudPageModel.getSearch())
                 .clickOnFirstResult()
                 .switchToFrameCalculator()
                 .selectComputeEngine()
@@ -56,8 +54,8 @@ public class CloudWithTempMailoTest extends CommonConditions {
 
         driver.switchTo().window(tabs.get(0));
 
-     /* googlePage
-               .switchToFrameCalculator()
+        googlePage
+                .switchToFrameCalculator()
                 .inputTempMailoInEstimate(tempMailoPageModel)
                 .clickSendEmailButton();
 
@@ -73,8 +71,7 @@ public class CloudWithTempMailoTest extends CommonConditions {
                 .switchToFrameCalculator()
                 .getEstimatedCost();
 
-        assertThat(GoogleCloudCalculatorPageFrame.estimatedMonthlyCostInGoogleCalculator,
-                is(equalTo(TempMailoPage.estimatedMonthlyCostInEMail)));
-*/
+
+
     }
 }

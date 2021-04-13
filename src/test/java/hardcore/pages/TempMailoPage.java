@@ -8,10 +8,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public class TempMailoPage extends AbstractPage {
 
@@ -23,6 +22,7 @@ public class TempMailoPage extends AbstractPage {
 
     public TempMailoPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(this.driver, this);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class TempMailoPage extends AbstractPage {
 
 
     public TempMailoPage getMessageFromTemporaryEmailService(TempMailoPageModel pageModel) {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         driver.switchTo().frame(frame);
 
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
@@ -71,7 +71,6 @@ public class TempMailoPage extends AbstractPage {
         pageModel.setEstimatedMonthlyCost(estimatedMonthlyCost.getText().replaceAll("[^0-9.]", ""));
         estimatedMonthlyCostInEMail = Double.parseDouble(pageModel.getEstimatedMonthlyCost());
         logger.info("Estimated monthly cost in email " + estimatedMonthlyCostInEMail);
-
         return this;
     }
 }

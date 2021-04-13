@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class GoogleCloudCalculatorPageFrame extends AbstractPage {
+public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
 
     public static Double estimatedMonthlyCostInGoogleCalculator;
     private final Logger logger = LogManager.getRootLogger();
