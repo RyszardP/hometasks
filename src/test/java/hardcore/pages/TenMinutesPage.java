@@ -8,6 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,6 +23,7 @@ public class TenMinutesPage extends AbstractPage {
 
     public TenMinutesPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(this.driver, this);
     }
 
     @Override
@@ -41,8 +43,8 @@ public class TenMinutesPage extends AbstractPage {
                 .until(ExpectedConditions
                         .attributeContains(driver.findElement(By.id("mail_address")), "value", "@"));
         emailAddress = driver.findElement(By.id("mail_address")).getAttribute("value");
-        logger.info("get address ");
         pageModel.setEmailAddress(emailAddress);
+        logger.info("get address " + pageModel.getEmailAddress());
         return this;
     }
 

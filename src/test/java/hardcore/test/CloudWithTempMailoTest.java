@@ -1,16 +1,10 @@
 package hardcore.test;
 
-import hardcore.model.CalculatorPageFrameModel;
-import hardcore.model.GoogleCloudPageModel;
-import hardcore.model.SearchResultPageModel;
-import hardcore.model.TempMailoPageModel;
+import hardcore.model.*;
 import hardcore.pages.CloudGooglePage;
 import hardcore.pages.GoogleCloudCalculatorPageFrame;
-import hardcore.pages.TempMailoPage;
-import hardcore.service.CalculatorPageFrameCreator;
-import hardcore.service.GoogleCloudPageCreator;
-import hardcore.service.SearchResultPageCreator;
-import hardcore.service.TempMailoPageCreator;
+import hardcore.pages.TenMinutesPage;
+import hardcore.service.*;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -25,6 +19,7 @@ public class CloudWithTempMailoTest extends CommonConditions {
         GoogleCloudPageModel cloudPageModel = GoogleCloudPageCreator.withSearchFromProperty();
         SearchResultPageModel searchResultPageModel = SearchResultPageCreator.withResultFromProperty();
         CalculatorPageFrameModel calculatorPageFrameModel = CalculatorPageFrameCreator.withCredentialsFromProperty();
+        TenMinutesPageModel tenMinutesPageModel = TenMinutesPageCreator.withResultFromProperty();
         TempMailoPageModel tempMailoPageModel = TempMailoPageCreator.withResultFromProperty();
         GoogleCloudCalculatorPageFrame googlePage = new CloudGooglePage(driver)
                 .openPage()
@@ -40,22 +35,22 @@ public class CloudWithTempMailoTest extends CommonConditions {
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
 
-        TempMailoPage tempMailoPage = new TempMailoPage(driver)
+        TenMinutesPage tenMinutesPage = new TenMinutesPage(driver)
                 .openPage()
-                .getAddress(tempMailoPageModel);
+                .getAddress(tenMinutesPageModel);
 
         driver.switchTo().window(tabs.get(0));
 
         googlePage
                 .switchToFrameCalculator()
-                .inputTempMailoInEstimate(tempMailoPageModel.getEmailAddress())
+                .inputTempMailoInEstimate(tenMinutesPageModel.getEmailAddress())
                 .clickSendEmailButton();
 
         driver.switchTo().window(tabs.get(1));
 
-        tempMailoPage
+       tenMinutesPage
                 .clickToMailWithSubject()
-                .getMessageFromTemporaryEmailService(tempMailoPageModel);
+                .getMessageFromTemporaryEmailService(tenMinutesPageModel);
 
         driver.switchTo().window(tabs.get(0));
 
@@ -64,7 +59,7 @@ public class CloudWithTempMailoTest extends CommonConditions {
                 .getEstimatedCost();
 
         Assert.assertTrue((GoogleCloudCalculatorPageFrame.estimatedMonthlyCostInGoogleCalculator)
-                .equals(TempMailoPage.estimatedMonthlyCostInEMail),"true");
+                .equals(TenMinutesPage.estimatedMonthlyCostInEMail),"true");
 
     }
 }
