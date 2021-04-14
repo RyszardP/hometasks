@@ -1,5 +1,6 @@
 package hardcore.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,5 +43,10 @@ public abstract class AbstractPage {
                 , element);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+
+    public void selectFromDropDown(String locatorInExpanded, String selectedValue){
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(
+                driver.findElement(By.xpath(String.format(locatorInExpanded, selectedValue))))).click();
     }
 }

@@ -36,7 +36,7 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
     @FindBy(xpath = "//div[@title='Compute Engine' and @class='hexagon']/../../..")
     WebElement computeEngineButton;
 
-    @FindBy(xpath = "//input[contains(@ng-model, 'quantity')]")
+    @FindBy(xpath = "//*[contains(text(),'Number of instances')]/following-sibling::input")
     WebElement numberOfInstancesField;
 
     @FindBy(xpath = "//md-select-value/span/div[contains(text(),'Free')]/../../..")
@@ -84,8 +84,8 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
     @FindBy(xpath = "//b[contains(@class,'ng-binding')and contains(text(),'Total')]")
     WebElement totalEstimatedCostInCalculator;
 
-    @FindBy(xpath = "//iframe")
-    private WebElement frame;
+    private String defaultLocatorInExpandDrop =
+            "//div[contains(@class,'md-active')]//md-option//div[contains(text(), '%s')]";
 
     public GoogleCloudCalculatorPageFrame fillCalculation(CalculatorPageFrameModel pageModel) {
         selectComputeEngine()
@@ -109,24 +109,23 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
     }
 
 
-    public GoogleCloudCalculatorPageFrame typeNumberOfInstancesWithUtil(String string) {
-        numberOfInstancesField.sendKeys(string);
+    public GoogleCloudCalculatorPageFrame typeNumberOfInstancesWithUtil(String numberOfInstance) {
+        numberOfInstancesField.sendKeys(numberOfInstance);
         logger.info("Type instances number");
         return this;
     }
 
-    public GoogleCloudCalculatorPageFrame selectOSSoftwareWithUtil(String string) {
+    public GoogleCloudCalculatorPageFrame selectOSSoftwareWithUtil(String operatingSystem) {
         openDropDownMenu(operatingSystemDropMenu);
-        driver.findElement(By.xpath("//md-option/div[contains(text(),'" + string + "')]/.."))
-                .click();
+        selectFromDropDown(defaultLocatorInExpandDrop, operatingSystem);
         logger.info("Select OS software");
         return this;
     }
 
-    public GoogleCloudCalculatorPageFrame selectMachineClassWithUtil(String string) {
+    public GoogleCloudCalculatorPageFrame selectMachineClassWithUtil(String vMClass) {
         openDropDownMenu(vMClassDropDownMenu);
-        driver.findElement(By.xpath("//div[contains(@class,'md-active')]//md-option[contains(.,'"
-                + string + "')]")).click();
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(
+                driver.findElement(By.xpath(String.format(this.defaultLocatorInExpandDrop, vMClass))))).click();
         logger.info("Select machine class");
         return this;
     }
@@ -152,7 +151,7 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
         elementWaitAndClick(gpuQuantityDropDown);
         logger.info("Select gpu Quantity");
         driver.findElement(By.xpath("//md-option[contains(@ng-disabled, " +
-                "'GPU')]/div[contains(text(),'" + pageModel.getNumberOfGPU()  + "')]")).click();
+                "'GPU')]/div[contains(text(),'" + pageModel.getNumberOfGPU() + "')]")).click();
         elementWaitAndClick(gpuTypeDropDown);
         logger.info("Select gpu Type");
         driver.findElement(By.xpath("//md-option/div[contains(text(),'" + pageModel.getGpuType() + "')]")).click();
@@ -227,5 +226,7 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
         logger.info("Estimated monthly cost in calculator page " + estimatedMonthlyCostInGoogleCalculator);
         return this;
     }
+
+
 
 }
