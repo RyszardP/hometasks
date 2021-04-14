@@ -20,7 +20,6 @@ public class CloudWithTempMailoTest extends CommonConditions {
         SearchResultPageModel searchResultPageModel = SearchResultPageCreator.withResultFromProperty();
         CalculatorPageFrameModel calculatorPageFrameModel = CalculatorPageFrameCreator.withCredentialsFromProperty();
         TenMinutesPageModel tenMinutesPageModel = TenMinutesPageCreator.withResultFromProperty();
-        TempMailoPageModel tempMailoPageModel = TempMailoPageCreator.withResultFromProperty();
         GoogleCloudCalculatorPageFrame googlePage = new CloudGooglePage(driver)
                 .openPage()
                 .typeInSearch(cloudPageModel.getSearch())
