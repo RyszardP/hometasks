@@ -26,7 +26,6 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
         PageFactory.initElements(this.driver, this);
     }
 
-
     public GoogleCloudCalculatorPageFrame openPage() {
         driver.navigate().to(PAGE_URL);
         logger.info("calculator page opened");
@@ -94,7 +93,7 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
                 .selectMachineClassWithUtil(pageModel.getMachineClass())
                 .selectSeriesWithUtil(pageModel.getSeries())
                 .selectInstanceWithUtil(pageModel.getInstanceType())
-                .selectCheckBoxGPUWithUtil(pageModel)
+                .selectCheckBoxGPUWithUtil(pageModel.getNumberOfGPU(), pageModel.getGpuType())
                 .selectSSDWithUtil(pageModel.getSsd())
                 .selectLocationWithUtil(pageModel.getLocation())
                 .selectCommittedUsageWithUtil(pageModel.getCommittedUsage());
@@ -107,7 +106,6 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
         logger.info("Select compute engine");
         return this;
     }
-
 
     public GoogleCloudCalculatorPageFrame typeNumberOfInstancesWithUtil(String numberOfInstance) {
         numberOfInstancesField.sendKeys(numberOfInstance);
@@ -124,64 +122,55 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
 
     public GoogleCloudCalculatorPageFrame selectMachineClassWithUtil(String vMClass) {
         openDropDownMenu(vMClassDropDownMenu);
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(
-                driver.findElement(By.xpath(String.format(this.defaultLocatorInExpandDrop, vMClass))))).click();
+        selectFromDropDown(defaultLocatorInExpandDrop, vMClass);
         logger.info("Select machine class");
         return this;
     }
 
-    public GoogleCloudCalculatorPageFrame selectSeriesWithUtil(String string) {
+    public GoogleCloudCalculatorPageFrame selectSeriesWithUtil(String stringSeries) {
         openDropDownMenu(seriesDropDownMenu);
-        driver.findElement(By.xpath("//div[contains(@class, 'md-active')]//md-option[contains(.,'" +
-                string + "')]")).click();
+        selectFromDropDown(defaultLocatorInExpandDrop, stringSeries);
         logger.info("Select series");
         return this;
     }
 
-    public GoogleCloudCalculatorPageFrame selectInstanceWithUtil(String string) {
+    public GoogleCloudCalculatorPageFrame selectInstanceWithUtil(String stringInstanceType) {
         openDropDownMenu(instanceTypeDropDown);
-        driver.findElement(By.xpath("//div[contains(@class, 'md-active')]//md-option[contains(.,'" +
-                string + "')]")).click();
+        selectFromDropDown(defaultLocatorInExpandDrop, stringInstanceType);
         logger.info("Select instances");
         return this;
     }
 
-    public GoogleCloudCalculatorPageFrame selectCheckBoxGPUWithUtil(CalculatorPageFrameModel pageModel) {
+    public GoogleCloudCalculatorPageFrame selectCheckBoxGPUWithUtil(String numberOfGpu, String gpuType) {
         clickToCheckBox(addGpuCheckBox);
-        elementWaitAndClick(gpuQuantityDropDown);
+        openDropDownMenu(gpuQuantityDropDown);
+        selectFromDropDown(defaultLocatorInExpandDrop, numberOfGpu);
         logger.info("Select gpu Quantity");
-        driver.findElement(By.xpath("//md-option[contains(@ng-disabled, " +
-                "'GPU')]/div[contains(text(),'" + pageModel.getNumberOfGPU() + "')]")).click();
-        elementWaitAndClick(gpuTypeDropDown);
+        openDropDownMenu(gpuTypeDropDown);
+        selectFromDropDown(defaultLocatorInExpandDrop, gpuType);
         logger.info("Select gpu Type");
-        driver.findElement(By.xpath("//md-option/div[contains(text(),'" + pageModel.getGpuType() + "')]")).click();
         logger.info("Select GPU");
         return this;
     }
 
-
-    public GoogleCloudCalculatorPageFrame selectSSDWithUtil(String string) {
+    public GoogleCloudCalculatorPageFrame selectSSDWithUtil(String localSsd) {
         openDropDownMenu(localSSDDropDown);
-        driver.findElement(By.xpath("//md-option/div[contains(text(),'" + string + "')]")).click();
+        selectFromDropDown(defaultLocatorInExpandDrop, localSsd);
         logger.info("Select SSD");
         return this;
     }
 
-
-    public GoogleCloudCalculatorPageFrame selectLocationWithUtil(String string) {
+    public GoogleCloudCalculatorPageFrame selectLocationWithUtil(String location) {
         openDropDownMenu(locationDropDown);
-        driver.findElement(By.xpath("//div[@aria-hidden = 'false']//div[contains(text(),'" +
-                string + "')]"))
-                .click();
+        selectFromDropDown(defaultLocatorInExpandDrop, location);
         logger.info("Select Location");
         return this;
     }
 
 
-    public GoogleCloudCalculatorPageFrame selectCommittedUsageWithUtil(String string) {
+    public GoogleCloudCalculatorPageFrame selectCommittedUsageWithUtil(String committedUsage) {
         openDropDownMenu(committedUsageDropDown);
-        driver.findElement(By.xpath("//div[contains(@class,'md-active')]//div[contains(text(), '" +
-                string + "')]")).click();
+        selectFromDropDown(defaultLocatorInExpandDrop, committedUsage);
         logger.info("Select Committed Usage");
         return this;
     }
@@ -191,7 +180,6 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
         logger.info("add to estimate");
         return this;
     }
-
 
     public GoogleCloudCalculatorPageFrame clickToEmailEstimate() {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
@@ -226,7 +214,5 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
         logger.info("Estimated monthly cost in calculator page " + estimatedMonthlyCostInGoogleCalculator);
         return this;
     }
-
-
 
 }

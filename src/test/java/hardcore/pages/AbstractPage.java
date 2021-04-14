@@ -38,13 +38,6 @@ public abstract class AbstractPage {
         }
     }
 
-    protected void elementWaitAndClick(WebElement element) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});"
-                , element);
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.elementToBeClickable(element)).click();
-    }
-
     public void selectFromDropDown(String locatorInExpanded, String selectedValue){
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(
                 driver.findElement(By.xpath(String.format(locatorInExpanded, selectedValue))))).click();

@@ -12,6 +12,7 @@ import hardcore.service.GoogleCloudPageCreator;
 import hardcore.service.SearchResultPageCreator;
 import hardcore.service.TempMailoPageCreator;
 import org.openqa.selenium.JavascriptExecutor;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -62,6 +63,8 @@ public class CloudWithTempMailoTest extends CommonConditions {
                 .switchToFrameCalculator()
                 .getEstimatedCost();
 
+        Assert.assertTrue((GoogleCloudCalculatorPageFrame.estimatedMonthlyCostInGoogleCalculator)
+                .equals(TempMailoPage.estimatedMonthlyCostInEMail),"true");
 
     }
 }
