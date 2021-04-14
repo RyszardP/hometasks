@@ -15,7 +15,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class TempMailoPage extends AbstractPage {
 
     public static String emailAddress;
-    public static String estimatedMonthlyCostInEmailString;
     public static Double estimatedMonthlyCostInEMail;
     private final String PAGE_URL = "https://tempmailo.com/";
     private final Logger logger = LogManager.getRootLogger();
@@ -30,9 +29,6 @@ public class TempMailoPage extends AbstractPage {
         driver.navigate().to(PAGE_URL);
         return this;
     }
-
-    @FindBy(xpath = "//div[@class='mail-item-sub'][contains(text(),'Google')]")
-    WebElement emailFromGoogleCloud;
 
     @FindBy(xpath = "//h3[contains(text(),'USD')]")
     WebElement estimatedMonthlyCost;
@@ -50,7 +46,6 @@ public class TempMailoPage extends AbstractPage {
         return this;
     }
 
-
     public TempMailoPage clickToMailWithSubject() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -59,7 +54,6 @@ public class TempMailoPage extends AbstractPage {
         logger.info("click to mail with subject ");
         return this;
     }
-
 
     public TempMailoPage getMessageFromTemporaryEmailService(TempMailoPageModel pageModel) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);

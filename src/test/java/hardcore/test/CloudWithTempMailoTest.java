@@ -2,14 +2,12 @@ package hardcore.test;
 
 import hardcore.model.CalculatorPageFrameModel;
 import hardcore.model.GoogleCloudPageModel;
-import hardcore.model.SearchResultPageModel;
 import hardcore.model.TempMailoPageModel;
 import hardcore.pages.CloudGooglePage;
 import hardcore.pages.GoogleCloudCalculatorPageFrame;
 import hardcore.pages.TempMailoPage;
 import hardcore.service.CalculatorPageFrameCreator;
 import hardcore.service.GoogleCloudPageCreator;
-import hardcore.service.SearchResultPageCreator;
 import hardcore.service.TempMailoPageCreator;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
@@ -23,7 +21,6 @@ public class CloudWithTempMailoTest extends CommonConditions {
     public void openAndCheck() {
 
         GoogleCloudPageModel cloudPageModel = GoogleCloudPageCreator.withSearchFromProperty();
-        SearchResultPageModel searchResultPageModel = SearchResultPageCreator.withResultFromProperty();
         CalculatorPageFrameModel calculatorPageFrameModel = CalculatorPageFrameCreator.withCredentialsFromProperty();
         TempMailoPageModel tempMailoPageModel = TempMailoPageCreator.withResultFromProperty();
         GoogleCloudCalculatorPageFrame googlePage = new CloudGooglePage(driver)

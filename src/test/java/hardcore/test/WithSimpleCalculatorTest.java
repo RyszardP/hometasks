@@ -7,10 +7,11 @@ import hardcore.pages.CloudGooglePage;
 import hardcore.pages.GoogleCloudCalculatorPageFrame;
 import hardcore.service.CalculatorPageFrameCreator;
 import hardcore.service.GoogleCloudPageCreator;
+import org.testng.annotations.Test;
 
 public class WithSimpleCalculatorTest extends CommonConditions {
 
-    //  @Test
+    @Test
     public void openCalculatorPage() {
         GoogleCloudPageModel cloudPageModel = GoogleCloudPageCreator.withSearchFromProperty();
         CalculatorPageFrameModel calculatorPageFrameModel = CalculatorPageFrameCreator.withCredentialsFromProperty();
