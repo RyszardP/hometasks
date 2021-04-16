@@ -45,10 +45,4 @@ public class CloudGooglePage extends AbstractPage {
         return new SearchResultPage(driver);
     }
 
-    public SearchResultPage clickInSearchResult() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(searchField));
-        return new SearchResultPage(driver);
-    }
-
-
 }

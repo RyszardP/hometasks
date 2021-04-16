@@ -12,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.regex.Pattern;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public class TenMinutesPage extends AbstractPage {
     public static String emailAddress;
@@ -38,6 +38,12 @@ public class TenMinutesPage extends AbstractPage {
     @FindBy(xpath = "//h3[contains(text(),'USD')]")
     WebElement estimatedMonthlyCost;
 
+    @FindBy(xpath = "//table[@class='quote']//tr[last()]/td[last()]")
+    private WebElement webElementEstimatedMonthlyCostValue;
+
+    @FindBy(xpath = "//div[@class='message_top']")
+    private WebElement webElementOpenEmailLink;
+
     public TenMinutesPage getAddress(TenMinutesPageModel pageModel) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions
@@ -51,26 +57,15 @@ public class TenMinutesPage extends AbstractPage {
     public TenMinutesPage clickToMailWithSubject() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        new WebDriverWait(driver, 90).until(ExpectedConditions.presenceOfElementLocated(By
-                .xpath("//div[@id='mail_messages_content']//span[contains(text(),'Google')]"))).click();
-
+        new WebDriverWait(driver, 90).until(elementToBeClickable(
+                webElementOpenEmailLink)).click();
+        logger.info("open email");
         return this;
     }
 
-    public TenMinutesPage getEstimatedMonthlyCostInEmail(TenMinutesPageModel pageModel) {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions
-                        .textMatches(By.xpath("//table[@class='quote']//tr[last()]/td[last()]/h3"), Pattern.compile("USD")));
-        estimatedMonthlyCost
-                .getText()
-                .replaceAll("[^0-9.]", "");
-        logger.info("get estimated monthly cost");
-        return this;
-    }
 
     public TenMinutesPage getMessageFromTemporaryEmailService(TenMinutesPageModel pageModel) {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//h3[contains(text(),'USD')]")));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(estimatedMonthlyCost));
 
         pageModel.setEstimatedMonthlyCost(estimatedMonthlyCost.getText().replaceAll("[^0-9.]", ""));
 
