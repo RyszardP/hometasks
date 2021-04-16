@@ -55,8 +55,6 @@ public class CloudWithTempMailoTest extends CommonConditions {
                 .clickToMailWithSubject()
                 .getMessageFromTemporaryEmailService();
 
-        System.out.println(totalPostEstimatedCostResult + " totalPostEstimatedCostResult");
-
         logger.info(totalPostEstimatedCostResult + " totalPostEstimatedCostResult");
 
         driver.switchTo().window(tabs.get(0));
@@ -64,8 +62,6 @@ public class CloudWithTempMailoTest extends CommonConditions {
         String totalPostEstimatedCostResultInCalculator = googlePage
                 .switchToFrameCalculator()
                 .getTotalEstimatedCostResult();
-
-        System.out.println(totalPostEstimatedCostResultInCalculator + " totalPostEstimatedCostResultInCalculator");
 
         logger.info(totalPostEstimatedCostResultInCalculator + " totalPostEstimatedCostResultInCalculator");
 

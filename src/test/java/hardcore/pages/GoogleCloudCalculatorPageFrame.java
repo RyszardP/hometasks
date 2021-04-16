@@ -217,14 +217,14 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
     }
 
     public String getTotalEstimatedCostResult() {
-        return selectDataFromResultForm("Total Estimated Cost: USD");
+        return selectDataFromResultForm("Total Estimated Cost:");
     }
 
     private String selectDataFromResultForm(String elementsName) {
         WebElement webElement = driver.findElement(By.xpath(String.format(defaultLocatorInResultArea, elementsName)));
         return webElement.getText().split(elementsName)[1]
-                .replace(" per 1 month", "")
-                .replaceAll("[^0-9]\\.|\\.[^0-9]", "");
+                .replaceAll("[^0-9]\\.|\\.[^0-9]", "")
+                .replace(" per 1 month", "");
     }
 
 }

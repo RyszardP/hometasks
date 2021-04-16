@@ -16,8 +16,6 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
 
 public class TenMinutesPage extends AbstractPage {
     public static String emailAddress;
-    public static String estimatedMonthlyCostInEmailString;
-    public static Double estimatedMonthlyCostInEMail;
     private final String PAGE_URL = "https://10minutemail.com/";
     private final Logger logger = LogManager.getRootLogger();
 
@@ -32,9 +30,6 @@ public class TenMinutesPage extends AbstractPage {
         return this;
     }
 
-    @FindBy(xpath = "//div[@id='mail_messages_content']//span[contains(text(),'Google')]")
-    WebElement emailFromGoogleCloud;
-
     @FindBy(xpath = "//h3[contains(text(),'USD')]")
     WebElement estimatedMonthlyCost;
 
@@ -43,7 +38,6 @@ public class TenMinutesPage extends AbstractPage {
 
     @FindBy(xpath = "//div[@class='message_top']")
     private WebElement webElementOpenEmailLink;
-
 
     private final String emailAddressId = "mail_address";
 
