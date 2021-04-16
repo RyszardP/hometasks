@@ -50,6 +50,9 @@ public abstract class AbstractPage {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(webElement))
                 .sendKeys(keys);
     }
-
+    public void waitAndSwitchToFrame(WebElement frame) {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));
+        driver.switchTo().frame(0);
+    }
 
 }

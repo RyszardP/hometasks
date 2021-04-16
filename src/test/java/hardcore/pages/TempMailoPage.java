@@ -62,8 +62,7 @@ public class TempMailoPage extends AbstractPage {
     }
 
     public TempMailoPage getMessageFromTemporaryEmailService(TempMailoPageModel pageModel) {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
-        driver.switchTo().frame(frame);
+        waitAndSwitchToFrame(frame);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath(fieldWithUSD)));
         logger.info("USD is visible");
