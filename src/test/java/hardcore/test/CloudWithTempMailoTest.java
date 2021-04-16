@@ -5,6 +5,8 @@ import hardcore.pages.CloudGooglePage;
 import hardcore.pages.GoogleCloudCalculatorPageFrame;
 import hardcore.pages.TenMinutesPage;
 import hardcore.service.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,6 +14,8 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 
 public class CloudWithTempMailoTest extends CommonConditions {
+
+    private final Logger logger = LogManager.getRootLogger();
 
     @Test
     public void openAndCheck() {
@@ -47,18 +51,25 @@ public class CloudWithTempMailoTest extends CommonConditions {
 
         driver.switchTo().window(tabs.get(1));
 
-       tenMinutesPage
+        String totalPostEstimatedCostResult = tenMinutesPage
                 .clickToMailWithSubject()
-                .getMessageFromTemporaryEmailService(tenMinutesPageModel);
+                .getMessageFromTemporaryEmailService();
+
+        System.out.println(totalPostEstimatedCostResult + " totalPostEstimatedCostResult");
+
+        logger.info(totalPostEstimatedCostResult + " totalPostEstimatedCostResult");
 
         driver.switchTo().window(tabs.get(0));
 
-        googlePage
+        String totalPostEstimatedCostResultInCalculator = googlePage
                 .switchToFrameCalculator()
-                .getEstimatedCost();
+                .getTotalEstimatedCostResult();
 
-        Assert.assertTrue((GoogleCloudCalculatorPageFrame.estimatedMonthlyCostInGoogleCalculator)
-                .equals(TenMinutesPage.estimatedMonthlyCostInEMail),"true");
+        System.out.println(totalPostEstimatedCostResultInCalculator + " totalPostEstimatedCostResultInCalculator");
+
+        logger.info(totalPostEstimatedCostResultInCalculator + " totalPostEstimatedCostResultInCalculator");
+
+        Assert.assertTrue(totalPostEstimatedCostResult.contains(totalPostEstimatedCostResultInCalculator));
 
     }
 }

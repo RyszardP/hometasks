@@ -15,7 +15,6 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     private final Logger logger = LogManager.getRootLogger();
     private final String PAGE_URL = "https://cloud.google.com/products/calculator";
 
-
     @FindBy(xpath = "//iframe")
     private WebElement frame;
 

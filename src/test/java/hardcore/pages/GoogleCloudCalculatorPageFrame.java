@@ -88,6 +88,9 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
     private String defaultLocatorInExpandDrop =
             "//div[contains(@class,'md-active')]//md-option//div[contains(text(), '%s')]";
 
+    private String defaultLocatorInResultArea =
+            "//md-card-content[@id='resultBlock']//*[contains(text(),'%s')]";
+
     public GoogleCloudCalculatorPageFrame fillCalculation(CalculatorPageFrameModel pageModel) {
         selectComputeEngine()
                 .typeNumberOfInstances(pageModel.getNumberOfInstances())
@@ -206,16 +209,22 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
                         Pattern.compile("USD")));
         String string = totalEstimatedCostInCalculator
                 .getText()
-                .replace("1 month", "")
+                .replace(" per 1 month", "")
                 .replaceAll("[^0-9.]", "");
         estimatedMonthlyCostInGoogleCalculator = Double.parseDouble(string);
         logger.info("Estimated monthly cost in calculator page " + estimatedMonthlyCostInGoogleCalculator);
         return this;
     }
 
-    public String getEstimateCost() {
-        WebElement webElement = driver.findElement(By.xpath(String.format(estimatedCost, "Total Estimated Cost:")));
-        return webElement.getText().split("Total Estimated Cost:")[1].replaceAll("\\s+", "");
+    public String getTotalEstimatedCostResult() {
+        return selectDataFromResultForm("Total Estimated Cost: USD");
+    }
+
+    private String selectDataFromResultForm(String elementsName) {
+        WebElement webElement = driver.findElement(By.xpath(String.format(defaultLocatorInResultArea, elementsName)));
+        return webElement.getText().split(elementsName)[1]
+                .replace(" per 1 month", "")
+                .replaceAll("[^0-9]\\.|\\.[^0-9]", "");
     }
 
 }

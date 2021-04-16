@@ -44,11 +44,14 @@ public class TenMinutesPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='message_top']")
     private WebElement webElementOpenEmailLink;
 
+
+    private final String emailAddressId = "mail_address";
+
     public TenMinutesPage getAddress(TenMinutesPageModel pageModel) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions
-                        .attributeContains(driver.findElement(By.id("mail_address")), "value", "@"));
-        emailAddress = driver.findElement(By.id("mail_address")).getAttribute("value");
+                        .attributeContains(driver.findElement(By.id(emailAddressId)), "value", "@"));
+        emailAddress = driver.findElement(By.id(emailAddressId)).getAttribute("value");
         pageModel.setEmailAddress(emailAddress);
         logger.info("get address " + pageModel.getEmailAddress());
         return this;
@@ -63,15 +66,15 @@ public class TenMinutesPage extends AbstractPage {
         return this;
     }
 
-
     public TenMinutesPage getMessageFromTemporaryEmailService(TenMinutesPageModel pageModel) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(estimatedMonthlyCost));
-
         pageModel.setEstimatedMonthlyCost(estimatedMonthlyCost.getText().replaceAll("[^0-9.]", ""));
-
         logger.info("Estimated monthly cost in email " + pageModel.getEstimatedMonthlyCost());
-
         return this;
     }
 
+    public String getMessageFromTemporaryEmailService() {
+        return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
+                webElementEstimatedMonthlyCostValue)).getText().replaceAll("[^0-9]\\.|\\.[^0-9]", "");
+    }
 }
