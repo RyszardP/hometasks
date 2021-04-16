@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CloudGooglePage extends AbstractPage {
@@ -39,14 +38,14 @@ public class CloudGooglePage extends AbstractPage {
     }
 
     public SearchResultPage typeInSearch(String inputData) {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(searchField));
+        waitAndClickToWebElement(searchField);
         searchField.sendKeys(inputData);
         searchField.sendKeys(Keys.ENTER);
         return new SearchResultPage(driver);
     }
 
     public SearchResultPage clickInSearchResult() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(searchField));
+        waitAndClickToWebElement(searchField);
         return new SearchResultPage(driver);
     }
 

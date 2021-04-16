@@ -38,10 +38,10 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
     @FindBy(xpath = "//*[contains(text(),'Number of instances')]/following-sibling::input")
     WebElement numberOfInstancesField;
 
-    @FindBy(xpath = "//md-select-value/span/div[contains(text(),'Free')]/../../..")
+    @FindBy(xpath = "//*[contains(text(),'Operating System / Software')]/following-sibling::md-select")
     WebElement operatingSystemDropMenu;
 
-    @FindBy(xpath = "//md-select-value/span/div[contains(text(),'Regular')]/../../..")
+    @FindBy(xpath = "//*[contains(text(),'Machine Class')]/following-sibling::md-select")
     WebElement vMClassDropDownMenu;
 
     @FindBy(xpath = "//*[contains(text(),'Series')]/following-sibling::md-select")
@@ -50,16 +50,16 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
     @FindBy(xpath = "//*[contains(text(),'Machine type')]/following-sibling::md-select")
     WebElement instanceTypeDropDown;
 
-    @FindBy(xpath = "//form[@name='ComputeEngineForm']/div[8]/div/md-input-container/md-checkbox")
+    @FindBy(xpath = "//md-checkbox[@aria-label='Add GPUs']")
     WebElement addGpuCheckBox;
 
-    @FindBy(xpath = "//md-select[@placeholder='Number of GPUs']")
+    @FindBy(xpath = "//*[contains(text(),'Number of GPUs')]//following-sibling::md-select")
     WebElement gpuQuantityDropDown;
 
-    @FindBy(xpath = "//md-select[@placeholder='GPU type']")
+    @FindBy(xpath = "//*[contains(text(),'GPU type')]//following-sibling::md-select")
     WebElement gpuTypeDropDown;
 
-    @FindBy(xpath = "//md-select[@placeholder='Local SSD']")
+    @FindBy(xpath = "//label[contains(text(),'Local SSD')]/following-sibling::md-select")
     WebElement localSSDDropDown;
 
     @FindBy(xpath = "//md-select[@placeholder='Datacenter location' and contains(@ng-model,'computeServer')]")
@@ -82,6 +82,8 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
 
     @FindBy(xpath = "//b[contains(@class,'ng-binding')and contains(text(),'Total')]")
     WebElement totalEstimatedCostInCalculator;
+
+    private String estimatedCost = "//md-card-content[@id='resultBlock']//div/b[contains(text(),Total)]";
 
     private String defaultLocatorInExpandDrop =
             "//div[contains(@class,'md-active')]//md-option//div[contains(text(), '%s')]";
@@ -182,29 +184,25 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
     }
 
     public GoogleCloudCalculatorPageFrame clickToEmailEstimate() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.elementToBeClickable(emailEstimateButton)).click();
+        waitAndClickToWebElement(emailEstimateButton);
         return this;
     }
 
     public GoogleCloudCalculatorPageFrame inputTempMailoInEstimate(String emailAddress) {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(emailFieldInEstimate))
-                .sendKeys(emailAddress);
+        waitAndSendKeys(emailFieldInEstimate, emailAddress);
         logger.info("input email " + emailAddress);
         return this;
     }
 
     public GoogleCloudCalculatorPageFrame clickSendEmailButton() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.elementToBeClickable(sendEmailInputButton)).click();
+        waitAndClickToWebElement(sendEmailInputButton);
         logger.info("send email");
         return this;
     }
 
     public GoogleCloudCalculatorPageFrame getEstimatedCost() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions
-                        .textMatches(By.xpath("//md-card-content[@id='resultBlock']//div/b[contains(text(),Total)]"),
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
+                        .textMatches(By.xpath(String.valueOf(estimatedCost)),
                                 Pattern.compile("USD")));
         String string = totalEstimatedCostInCalculator
                 .getText()
@@ -213,6 +211,11 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
         estimatedMonthlyCostInGoogleCalculator = Double.parseDouble(string);
         logger.info("Estimated monthly cost in calculator page " + estimatedMonthlyCostInGoogleCalculator);
         return this;
+    }
+
+    private String getEstimateCost(){
+        WebElement webElement = driver.findElement(By.xpath(String.format(estimatedCost, "Total Estimated Cost:")));
+        return webElement.getText().split("Total Estimated Cost:")[1].replaceAll("\\s+", "");
     }
 
 }

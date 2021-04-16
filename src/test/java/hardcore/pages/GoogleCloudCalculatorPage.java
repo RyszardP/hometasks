@@ -30,7 +30,6 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
         PageFactory.initElements(this.driver, this);
     }
 
-
     public GoogleCloudCalculatorPageFrame switchToFrameCalculator() {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));
         driver.switchTo().frame(0);

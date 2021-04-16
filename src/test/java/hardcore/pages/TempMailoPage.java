@@ -12,6 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+
 public class TempMailoPage extends AbstractPage {
 
     public static String emailAddress;
@@ -30,6 +32,10 @@ public class TempMailoPage extends AbstractPage {
         return this;
     }
 
+    private final String emailID = "i-email";
+    private final String subjectImEmail = "//div[@class='mail-item-sub'][contains(text(),'Google')]";
+    private final String fieldWithUSD = "//h3[contains(text(),'USD')]";
+
     @FindBy(xpath = "//h3[contains(text(),'USD')]")
     WebElement estimatedMonthlyCost;
 
@@ -39,8 +45,8 @@ public class TempMailoPage extends AbstractPage {
     public TempMailoPage getAddress(TempMailoPageModel pageModel) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions
-                        .attributeContains(driver.findElement(By.id("i-email")), "value", "@"));
-        emailAddress = driver.findElement(By.id("i-email")).getAttribute("value");
+                        .attributeContains(driver.findElement(By.id(emailID)), "value", "@"));
+        emailAddress = driver.findElement(By.id(emailID)).getAttribute("value");
         pageModel.setEmailAddress(emailAddress);
         logger.info("get address " + pageModel.getEmailAddress());
         return this;
@@ -50,21 +56,28 @@ public class TempMailoPage extends AbstractPage {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         new WebDriverWait(driver, 90).until(ExpectedConditions.presenceOfElementLocated(By
-                .xpath("//div[@class='mail-item-sub'][contains(text(),'Google')]"))).click();
-        logger.info("click to mail with subject ");
+                .xpath(subjectImEmail))).click();
+        logger.info("click to mail with subject");
         return this;
     }
 
     public TempMailoPage getMessageFromTemporaryEmailService(TempMailoPageModel pageModel) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         driver.switchTo().frame(frame);
-
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//h3[contains(text(),'USD')]")));
+                .visibilityOfElementLocated(By.xpath(fieldWithUSD)));
         logger.info("USD is visible");
         pageModel.setEstimatedMonthlyCost(estimatedMonthlyCost.getText().replaceAll("[^0-9.]", ""));
         estimatedMonthlyCostInEMail = Double.parseDouble(pageModel.getEstimatedMonthlyCost());
         logger.info("Estimated monthly cost in email " + estimatedMonthlyCostInEMail);
         return this;
     }
+
+    public String getMessageFromTemporaryEmailService() {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
+        driver.switchTo().frame(frame);
+        return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
+                By.xpath(fieldWithUSD))).getText().replaceAll("\\s+", "");
+    }
+
 }
