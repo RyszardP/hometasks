@@ -213,7 +213,7 @@ public class GoogleCloudCalculatorPageFrame extends GoogleCloudCalculatorPage {
         return this;
     }
 
-    private String getEstimateCost(){
+    public String getEstimateCost(){
         WebElement webElement = driver.findElement(By.xpath(String.format(estimatedCost, "Total Estimated Cost:")));
         return webElement.getText().split("Total Estimated Cost:")[1].replaceAll("\\s+", "");
     }

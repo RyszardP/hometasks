@@ -34,7 +34,9 @@ public class TempMailoPage extends AbstractPage {
 
     private final String emailID = "i-email";
     private final String subjectImEmail = "//div[@class='mail-item-sub'][contains(text(),'Google')]";
-    private final String fieldWithUSD = "//h3[contains(text(),'USD')]";
+
+    @FindBy(xpath = "//table[@class='quote']//tr[last()]/td[last()]")
+    WebElement fieldWithUSD;
 
     @FindBy(xpath = "//h3[contains(text(),'USD')]")
     WebElement estimatedMonthlyCost;
@@ -64,7 +66,7 @@ public class TempMailoPage extends AbstractPage {
     public TempMailoPage getMessageFromTemporaryEmailService(TempMailoPageModel pageModel) {
         waitAndSwitchToFrame(frame);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath(fieldWithUSD)));
+                .visibilityOfElementLocated(By.xpath(String.valueOf(estimatedMonthlyCost))));
         logger.info("USD is visible");
         pageModel.setEstimatedMonthlyCost(estimatedMonthlyCost.getText().replaceAll("[^0-9.]", ""));
         estimatedMonthlyCostInEMail = Double.parseDouble(pageModel.getEstimatedMonthlyCost());
@@ -73,10 +75,9 @@ public class TempMailoPage extends AbstractPage {
     }
 
     public String getMessageFromTemporaryEmailService() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
-        driver.switchTo().frame(frame);
-        return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
-                By.xpath(fieldWithUSD))).getText().replaceAll("\\s+", "");
+        waitAndSwitchToFrame(frame);
+        logger.info("switch to mail");
+        return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(fieldWithUSD))
+                .getText().replaceAll("[^0-9.]", "");
     }
-
 }

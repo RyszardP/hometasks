@@ -9,6 +9,8 @@ import hardcore.pages.TempMailoPage;
 import hardcore.service.CalculatorPageFrameCreator;
 import hardcore.service.GoogleCloudPageCreator;
 import hardcore.service.TempMailoPageCreator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,6 +18,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 
 public class CloudWithTempMailoTest extends CommonConditions {
+    private final Logger logger = LogManager.getRootLogger();
 
     @Test
     public void openAndCheck() {
@@ -50,18 +53,25 @@ public class CloudWithTempMailoTest extends CommonConditions {
 
         driver.switchTo().window(tabs.get(1));
 
+        //   String totalPostEstimatedCostResult = tempMailoPage
         tempMailoPage
                 .clickToMailWithSubject()
                 .getMessageFromTemporaryEmailService(tempMailoPageModel);
 
+        //   System.out.println(totalPostEstimatedCostResult);
+
+        //   logger.info("totalPostEstimatedCostResult " + totalPostEstimatedCostResult);
+
         driver.switchTo().window(tabs.get(0));
 
-        googlePage
+        String estimatedMonthlyCostInGoogleCalculator = googlePage
                 .switchToFrameCalculator()
-                .getEstimatedCost();
+                .getEstimateCost();
+
+        logger.info("estimatedMonthlyCostInGoogleCalculator" + estimatedMonthlyCostInGoogleCalculator);
 
         Assert.assertTrue((GoogleCloudCalculatorPageFrame.estimatedMonthlyCostInGoogleCalculator)
-                .equals(TempMailoPage.estimatedMonthlyCostInEMail),"true");
+                .equals(TempMailoPage.estimatedMonthlyCostInEMail), "true");
 
     }
 }
